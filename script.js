@@ -139,3 +139,24 @@ window.onload = function() {
   }
 };
 
+// Dark mode toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const toggle = document.getElementById('darkModeToggle');
+  // Load preference from localStorage
+  if (localStorage.getItem('dark-mode') === 'true') {
+    document.body.classList.add('dark-mode');
+    toggle.textContent = '☀️';
+  }
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    // Change icon
+    if (document.body.classList.contains('dark-mode')) {
+      toggle.textContent = '☀️';
+      localStorage.setItem('dark-mode', 'true');
+    } else {
+      toggle.textContent = '🌙';
+      localStorage.setItem('dark-mode', 'false');
+    }
+  });
+});
+
