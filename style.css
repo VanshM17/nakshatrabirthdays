@@ -209,3 +209,20 @@ body.dark-mode .bday-today {
   background: #ffe066;
   color: #232946;
 }
+
+.star {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.8;
+  z-index: 9999;
+  animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
