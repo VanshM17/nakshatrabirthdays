@@ -1,0 +1,107 @@
+body {
+    font-family: 'Georgia', serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  header {
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .logo {
+    height: 70px;
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .tabs {
+    display: flex;
+    justify-content: center;
+    background: #2a5298;
+    box-shadow: inset 0 -3px 5px rgba(0,0,0,0.2);
+  }
+  .tab-button {
+    background: transparent;
+    border: none;
+    color: #e0e0e0;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 3px solid transparent;
+    letter-spacing: 0.05em;
+  }
+  .tab-button:hover, .tab-button.active {
+    color: #fff;
+    border-bottom: 3px solid #f4d35e;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .tab-content {
+    display: none;
+    max-width: 720px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    padding: 2rem 2.5rem;
+    font-size: 1rem;
+  }
+  .member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  .member:last-child {
+    border-bottom: none;
+  }
+  .member-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+  .member-photo:hover {
+    transform: scale(1.05);
+  }
+  .member-info {
+    flex: 1;
+  }
+  .member-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #1e3c72;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.03em;
+  }
+  .member-birthday {
+    color: #666;
+    font-size: 1rem;
+    font-style: italic;
+  }
+  @media (max-width: 600px) {
+    .member {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .member-photo {
+      margin-bottom: 0.7rem;
+    }
+    .tab-button {
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+    }
+    .tab-content {
+      padding: 1.5rem 1.5rem;
+    }
+  }
+  
