@@ -322,3 +322,63 @@ body.dark-mode .site-footer {
 body.dark-mode .site-footer strong {
   color: #fff;
 }
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.search-bar {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: width 0.3s;
+}
+
+.search-bar input[type="text"] {
+  width: 0;
+  opacity: 0;
+  padding: 0.4em 0;
+  border-radius: 18px;
+  border: 1px solid #b6c5d6;
+  font-size: 1rem;
+  background: #f7fafc;
+  outline: none;
+  min-width: 170px;
+  transition: width 0.3s, opacity 0.3s, padding 0.3s;
+  pointer-events: none;
+}
+
+.search-bar.active input[type="text"] {
+  width: 170px;
+  opacity: 1;
+  padding: 0.4em 1em;
+  pointer-events: auto;
+}
+
+.search-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3em;
+  display: flex;
+  align-items: center;
+}
+.search-icon-btn img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0.2);
+  transition: filter 0.2s;
+}
+.search-bar.active .search-icon-btn img {
+  filter: brightness(0.8);
+}
+
+body.dark-mode .search-bar input[type="text"] {
+  background: #232946;
+  color: #ffe066;
+  border-color: #444;
+}
