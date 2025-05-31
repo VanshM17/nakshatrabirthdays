@@ -210,6 +210,7 @@ body.dark-mode .bday-today {
   color: #232946;
 }
 
+
 .star {
   position: fixed;
   width: 8px;
@@ -219,10 +220,53 @@ body.dark-mode .bday-today {
   pointer-events: none;
   opacity: 0.8;
   z-index: 9999;
-  animation: twinkle 2s infinite;
+  animation: twinkle 4s infinite;
 }
 
 @keyframes twinkle {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 1; }
+}
+
+.asteroid {
+  position: fixed;
+  top: -40px;
+  width: 36px;
+  height: 36px;
+  background: radial-gradient(circle at 30% 30%, #bbb 70%, #888 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 20px #333, 8px 8px 0 0 #666 inset;
+  z-index: 9999;
+  animation: asteroid-fall 1.6s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes asteroid-fall {
+  to {
+    top: 100vh;
+    transform: rotate(360deg) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+.asteroid-crash {
+  animation: asteroid-crash 0.5s steps(3) forwards;
+  background: #ffec8b;
+  box-shadow: 0 0 30px #ffec8b, 0 0 80px #fc575e;
+}
+
+@keyframes asteroid-crash {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; transform: scale(1.4); }
+  100% { opacity: 0; transform: scale(1.8); }
+}
+
+/* Optional: page shake effect */
+body.shake {
+  animation: shake 0.4s;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0);}
+  20%, 60% { transform: translateX(-10px);}
+  40%, 80% { transform: translateX(10px);}
 }
