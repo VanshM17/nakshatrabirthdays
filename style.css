@@ -174,3 +174,38 @@ body.dark-mode .sort-controls select {
   background: #21243b;
   border-color: #444;
 }
+
+.member {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  justify-content: space-between; /* This aligns days left to the right */
+}
+.member-daysleft {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1e3c72;
+  background: #f4d35e22;
+  border-radius: 16px;
+  padding: 0.4em 1em;
+  min-width: 110px;
+  text-align: center;
+}
+.bday-today {
+  color: #fff;
+  background: #fc575e;
+  padding: 0.3em 0.9em;
+  border-radius: 16px;
+  font-weight: bold;
+  display: inline-block;
+}
+body.dark-mode .member-daysleft {
+  color: #ffe066;
+  background: #222a44;
+}
+body.dark-mode .bday-today {
+  background: #ffe066;
+  color: #232946;
+}
