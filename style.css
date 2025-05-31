@@ -104,3 +104,73 @@ header {
     padding: 1.5rem 1.5rem;
   }
 }
+
+/* Toggle button styling */
+.dark-mode-toggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  font-size: 1.7rem;
+  cursor: pointer;
+  color: #222;
+  transition: color 0.3s;
+  z-index: 10;
+}
+body.dark-mode .dark-mode-toggle {
+  color: #ffe066;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background: #181c24;
+  color: #f3f3f3;
+}
+
+body.dark-mode header {
+  background: linear-gradient(90deg, #232946, #21243b);
+  color: #fff;
+}
+
+body.dark-mode .tabs,
+body.dark-mode .blur-backdrop {
+  background: rgba(30, 34, 54, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+body.dark-mode .tab-button {
+  color: #eee;
+  background: transparent;
+}
+body.dark-mode .tab-button.active,
+body.dark-mode .tab-button:hover {
+  color: #ffe066;
+  border-bottom: 3px solid #ffe066;
+}
+
+body.dark-mode .tab-content {
+  background: #232946;
+  color: #f3f3f3;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .member {
+  border-bottom: 1px solid #2e3350;
+}
+body.dark-mode .member-name {
+  color: #ffe066;
+}
+body.dark-mode .member-title {
+  color: #c7d0e0;
+  background: #232946;
+}
+body.dark-mode .member-birthday {
+  color: #b3b3b3;
+}
+body.dark-mode .sort-controls label,
+body.dark-mode .sort-controls select {
+  color: #eee;
+  background: #21243b;
+  border-color: #444;
+}
