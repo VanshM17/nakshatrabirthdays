@@ -58,6 +58,31 @@ const members2028 = [
   { name: "Akshat Kashyap", birthday: "13-Dec", title: "Member", photo: "placeholder.jpg" }
 ];
 
+//Days-Until-Birthday-Left
+function daysUntilBirthday(birthdayStr) {
+  const [day, monStr] = birthdayStr.split('-');
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const month = months.indexOf(monStr);
+  const today = new Date();
+  let year = today.getFullYear();
+  let nextBirthday = new Date(year, month, parseInt(day));
+
+  // If birthday this year has already passed, use next year
+  if (
+    today.getMonth() > month ||
+    (today.getMonth() === month && today.getDate() > parseInt(day))
+  ) {
+    nextBirthday.setFullYear(year + 1);
+  }
+
+  // Calculate difference in days
+  const oneDay = 1000 * 60 * 60 * 24;
+  const diffDays = Math.ceil((nextBirthday - today) / oneDay);
+
+  return diffDays;
+}
+
+
 // 2. Render function (ONE for all years)
 function renderMembers(year, members) {
   const container = document.getElementById('members-' + year);
