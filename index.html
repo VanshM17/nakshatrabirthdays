@@ -23,7 +23,18 @@
     <button class="tab-button" onclick="openYear(event, '2027')">2027</button>
     <button class="tab-button" onclick="openYear(event, '2028')">2028</button>
   </div>
-
+  <div class="search-bar" id="searchBar">
+  <button class="search-icon-btn" id="searchIconBtn" aria-label="Search">
+    <img src="images/search.svg" alt="Search" />
+  </button>
+  <input
+    type="text"
+    id="memberSearch"
+    placeholder="Search members..."
+    oninput="searchMembers()"
+    autocomplete="off"
+  />
+</div>
   <!-- 2025 -->
   <div id="2025" class="tab-content">
     <div class="member">
