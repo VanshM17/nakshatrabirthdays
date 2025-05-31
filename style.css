@@ -106,7 +106,7 @@ header {
 }
 
 /* Toggle button styling */
-.dark-mode-toggle:{
+.dark-mode-toggle {
   position: absolute;
   top: 1.5rem;
   right: 2rem;
