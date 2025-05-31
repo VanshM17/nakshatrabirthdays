@@ -244,3 +244,41 @@ function launchAsteroids() {
   document.body.classList.add('shake');
   setTimeout(() => document.body.classList.remove('shake'), 500);
 }
+// Expanding search bar logic
+document.addEventListener('DOMContentLoaded', function() {
+  const searchBar = document.getElementById('searchBar');
+  const searchIconBtn = document.getElementById('searchIconBtn');
+  const memberSearch = document.getElementById('memberSearch');
+
+  searchIconBtn.addEventListener('click', function(e) {
+    searchBar.classList.toggle('active');
+    if (searchBar.classList.contains('active')) {
+      memberSearch.focus();
+    } else {
+      memberSearch.value = '';
+      searchMembers(); // Clear results when closing
+    }
+    e.stopPropagation();
+  });
+
+  // Close search bar if clicked outside
+  document.addEventListener('click', function(e) {
+    if (
+      searchBar.classList.contains('active') &&
+      !searchBar.contains(e.target)
+    ) {
+      searchBar.classList.remove('active');
+      memberSearch.value = '';
+      searchMembers(); // Clear results
+    }
+  });
+
+  // Optional: Pressing ESC closes the search bar
+  memberSearch.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      searchBar.classList.remove('active');
+      memberSearch.value = '';
+      searchMembers();
+    }
+  });
+});
