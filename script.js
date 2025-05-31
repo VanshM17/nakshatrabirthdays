@@ -209,6 +209,38 @@ function launchStars() {
     star.style.left = Math.random() * window.innerWidth + 'px';
     star.style.animationDelay = (Math.random() * 2) + 's';
     document.body.appendChild(star);
-    setTimeout(() => star.remove(), 3200); // Remove after 3.2 seconds
+    setTimeout(() => star.remove(), 6000); // Remove after 3.2 seconds
   }
+}
+
+// --- Easter Egg: Type "asteroid" to launch asteroid shower ---
+let typedAst = '';
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey || e.altKey || e.metaKey) return;
+  typedAst += e.key.toLowerCase();
+  typedAst = typedAst.slice(-8); // Only keep last 8 chars
+
+  if (typedAst === 'asteroid') {
+    launchAsteroids();
+    typedAst = '';
+  }
+});
+
+function launchAsteroids() {
+  for (let i = 0; i < 7 + Math.floor(Math.random()*4); i++) {
+    let asteroid = document.createElement('div');
+    asteroid.className = 'asteroid';
+    asteroid.style.left = (Math.random() * (window.innerWidth - 40)) + 'px';
+    asteroid.style.animationDelay = (Math.random() * 0.7) + 's';
+    document.body.appendChild(asteroid);
+
+    // Boom effect at the end of fall
+    setTimeout(() => {
+      asteroid.classList.add('asteroid-crash');
+      setTimeout(() => asteroid.remove(), 500);
+    }, 3000 + parseFloat(asteroid.style.animationDelay) * 1000);
+  }
+  // Optional: shake the page for effect
+  document.body.classList.add('shake');
+  setTimeout(() => document.body.classList.remove('shake'), 500);
 }
