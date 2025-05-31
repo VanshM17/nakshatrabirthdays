@@ -188,3 +188,27 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// --- Easter Egg: Type "stars" to launch stars animation ---
+let typed = '';
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey || e.altKey || e.metaKey) return; // ignore shortcuts
+  typed += e.key.toLowerCase();
+  typed = typed.slice(-5); // Only keep last 5 chars
+
+  if (typed === 'stars') {
+    launchStars();
+    typed = '';
+  }
+});
+
+function launchStars() {
+  for (let i = 0; i < 50; i++) {
+    let star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * window.innerHeight + 'px';
+    star.style.left = Math.random() * window.innerWidth + 'px';
+    star.style.animationDelay = (Math.random() * 2) + 's';
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 3200); // Remove after 3.2 seconds
+  }
+}
