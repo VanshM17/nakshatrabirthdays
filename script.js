@@ -83,18 +83,21 @@ function daysUntilBirthday(birthdayStr) {
 }
 
 
-// 2. Render function (ONE for all years)
 function renderMembers(year, members) {
   const container = document.getElementById('members-' + year);
   container.innerHTML = '';
   members.forEach(member => {
+    const daysLeft = daysUntilBirthday(member.birthday);
     container.innerHTML += `
       <div class="member">
         <img src="images/${member.photo}" alt="${member.name}" class="member-photo">
         <div class="member-info">
           <div class="member-name">${member.name}</div>
-          <div class="member-title ${member.title.toLowerCase()}">${member.title}</div>
+          <div class="member-title ${member.title.toLowerCase().replace(/\s+/g, '-')}">${member.title}</div>
           <div class="member-birthday">${member.birthday}</div>
+        </div>
+        <div class="member-daysleft">
+          ${daysLeft === 0 ? "<span class='bday-today'>🎉 Today!</span>" : `${daysLeft} day${daysLeft > 1 ? "s" : ""} left`}
         </div>
       </div>
     `;
