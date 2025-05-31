@@ -15,7 +15,7 @@ header {
 .logo {
   height: 70px;
   margin-bottom: 0.5rem;
-  border-radius: 0px;
+  border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 .tabs {
@@ -76,8 +76,7 @@ header {
 .member-info {
   flex: 1;
 }
-.member-name:hover {
-  transform: scale(1.05);{
+.member-name:{
   font-weight: 700;
   font-size: 1.2rem;
   color: #1e3c72;
@@ -107,8 +106,7 @@ header {
 }
 
 /* Toggle button styling */
-.dark-mode-toggle:hover {
-  transform: scale(1.25); {
+.dark-mode-toggle:{
   position: absolute;
   top: 1.5rem;
   right: 2rem;
