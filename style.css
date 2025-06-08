@@ -1,53 +1,54 @@
 body {
-  font-family: 'Georgia', serif;
-  background: #f9f9f9;
+  font-family: 'Coolvetica', serif;
+  background: #F8F0E3;
   margin: 0;
   padding: 0;
   color: #333;
 }
 header {
-  background: linear-gradient(90deg, #1e3c72, #2a5298);
-  color: white;
-  padding: 1.5rem 1rem;
+  font-family: 'Confortaa', serif;
+  background: linear-gradient(90deg,#94c4ff 0%, #7eb5fa 25%, #5f97ff 75%, #3d94ff 100%);
+  color: rgb(0, 0, 0);
+  padding: 1.75rem 1.5rem;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
 .logo {
   height: 70px;
   margin-bottom: 0.5rem;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 0px 0px rgba(0,0,0,0.3);
 }
 .tabs {
   display: flex;
   justify-content: center;
-  background: #2a5298;
-  box-shadow: inset 0 -3px 5px rgba(0,0,0,0.2);
+  background: #F8F0E3;
 }
 .tab-button {
   background: transparent;
   border: none;
-  color: #e0e0e0;
+  color: #000000;
   padding: 1rem 2rem;
   cursor: pointer;
   font-size: 1.1rem;
   font-weight: 600;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
+  transition: color 0.75s ease, border-bottom 0.75s ease;
   border-bottom: 3px solid transparent;
   letter-spacing: 0.05em;
 }
 .tab-button:hover, .tab-button.active {
-  color: #fff;
-  border-bottom: 3px solid #f4d35e;
+  color: #000000;
+  border-bottom: 3px solid #0095ff;
   background: rgba(255, 255, 255, 0.1);
 }
 .tab-content {
   display: none;
   max-width: 720px;
   margin: 2rem auto;
-  background: white;
+  background:  #F8F0E3;
   border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  box-shadow: 1 1px 1px rgba(0,0,0,0.1);
   padding: 2rem 2.5rem;
   font-size: 1rem;
 }
@@ -56,32 +57,52 @@ header {
   align-items: center;
   margin-bottom: 1.2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #252629;
+  justify-content: flex-start;
+  position: relative;
 }
-.member:last-child {
-  border-bottom: none;
+
+.member-info {
+  flex: 1;
 }
+
+
 .member-photo {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  margin-right: 20px;
+  margin-top : 1px;
+  transition: transform 0.5s ease;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
+  cursor:pointer;
   margin-right: 1.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
 .member-photo:hover {
-  transform: scale(1.05);
+  transform: scale(1.15);
+  z-index: 1000;             /* make sure it appears on top */
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 .member-info {
   flex: 1;
 }
-.member-name:{
-  font-weight: 700;
+.member-name{
+  font-weight: 100;
   font-size: 1.2rem;
-  color: #1e3c72;
-  margin-bottom: 0.2rem;
-  letter-spacing: 0.03em;
+  color: #1d2032;
+  margin-bottom: 0.1  rem;
+  letter-spacing: 0.05em;
+}
+
+.member-title{
+  font-weight: 90;
+  font-size: 1.1rem;
+  margin-bottom: 0.1rem;
+  color : #011037
+
 }
 .member-birthday {
   color: #666;
@@ -107,9 +128,9 @@ header {
 
 /* Toggle button styling */
 .dark-mode-toggle {
-  position: absolute;
+  position: left;
   top: 1.5rem;
-  right: 2rem;
+  right: 20rem;
   background: none;
   border: none;
   font-size: 1.7rem;
@@ -124,12 +145,12 @@ body.dark-mode .dark-mode-toggle {
 
 /* Dark mode styles */
 body.dark-mode {
-  background: #181c24;
+  background: #1e2235;
   color: #f3f3f3;
 }
 
 body.dark-mode header {
-  background: linear-gradient(90deg, #232946, #21243b);
+  background: linear-gradient(90deg,#1f1f3d,#3f56bc, #3f56bc, #1f1f3d);
   color: #fff;
 }
 
@@ -146,13 +167,14 @@ body.dark-mode .tab-button {
 body.dark-mode .tab-button.active,
 body.dark-mode .tab-button:hover {
   color: #ffe066;
-  border-bottom: 3px solid #ffe066;
+  border-bottom: px  #ffe066;
 }
 
 body.dark-mode .tab-content {
-  background: #232946;
+  letter-spacing: 0.5px;
+  background: #1d2132;
   color: #f3f3f3;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  box-shadow: 1 0px 0px #ffe066;
 }
 
 body.dark-mode .member {
@@ -162,8 +184,8 @@ body.dark-mode .member-name {
   color: #ffe066;
 }
 body.dark-mode .member-title {
-  color: #c7d0e0;
-  background: #232946;
+  color: #F8F0E3;
+  background: #1d2132;
 }
 body.dark-mode .member-birthday {
   color: #b3b3b3;
@@ -173,44 +195,18 @@ body.dark-mode .sort-controls select {
   color: #eee;
   background: #21243b;
   border-color: #444;
+
 }
+
 
 .member {
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #eee;
-  justify-content: space-between; /* This aligns days left to the right */
+  border-bottom: 1px solid #dbd0c6;
+  justify-content: space-between; /*aligns days left to the right */
 }
-.member-daysleft {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #1e3c72;
-  background: #f4d35e22;
-  border-radius: 16px;
-  padding: 0.4em 1em;
-  min-width: 110px;
-  text-align: center;
-}
-.bday-today {
-  color: #fff;
-  background: #fc575e;
-  padding: 0.3em 0.9em;
-  border-radius: 16px;
-  font-weight: bold;
-  display: inline-block;
-}
-body.dark-mode .member-daysleft {
-  color: #ffe066;
-  background: #222a44;
-}
-body.dark-mode .bday-today {
-  background: #ffe066;
-  color: #232946;
-}
-
-
 .star {
   position: fixed;
   width: 8px;
@@ -261,7 +257,6 @@ body.dark-mode .bday-today {
   100% { opacity: 0; transform: scale(1.8); }
 }
 
-/* Optional: page shake effect */
 body.shake {
   animation: shake 0.4s;
 }
@@ -272,7 +267,7 @@ body.shake {
 }
 
 .site-footer {
-  background: linear-gradient(90deg, #232946 60%, #21243b 100%);
+  background: linear-gradient(90deg,#24283e 10%, #42456a 40%, #42456a 70%, #242852 100%);
   color: #fff;
   padding: 2rem 0 1rem 0;
   text-align: center;
@@ -283,14 +278,28 @@ body.shake {
   position: relative;
 }
 
+.tooltip {
+position: absolute;
+top: 0;
+font-size: 14px;
+background:l#fff;
+padding: 5px 8px;
+border-radius: 5px;
+box-shadow: 0 10px 10px
+
+rgba(0,0,0,0.1);
+}
+
 .footer-content {
   max-width: 600px;
   margin: 0 auto;
 }
 
-.site-footer strong {
-  font-size: 1.15rem;
-  color: #ffe066;
+.site-footer {
+  letter-spacing: 1px;
+  font-weight: 15;
+  font-size: 1.05rem;
+  color: #ffffff;
 }
 
 .footer-links {
@@ -301,23 +310,23 @@ body.shake {
   display: inline-block;
   margin: 0 0.7em;
   opacity: 0.8;
-  transition: opacity 0.2s, transform 0.2s;
+  transition: opacity 1s, transform 0.4s;
 }
 .footer-links a:hover {
   opacity: 1;
-  transform: translateY(-3px) scale(1.1);
+  transform: translateY(-5px) scale(1.3);
 }
 
 .footer-links img {
   width: 28px;
   height: 28px;
   vertical-align: middle;
-  filter: brightness(0) invert(1);
+  filter: brightness(1) invert(1);
 }
 
 body.dark-mode .site-footer {
-  background: linear-gradient(90deg, #181c24 60%, #232946 100%);
-  color: #ffe066;
+  background: linear-gradient(90deg,#181c24 0%,#194253 40%, #0b4044 50%, #195352 60%,#134245 70%, #222245 80%, #181c24 100%);
+  color: #ffffff;
 }
 body.dark-mode .site-footer strong {
   color: #fff;
@@ -334,7 +343,7 @@ body.dark-mode .site-footer strong {
   margin-left: auto;
   display: flex;
   align-items: center;
-  position: relative;
+  position: right;
   transition: width 0.3s;
 }
 
@@ -342,14 +351,14 @@ body.dark-mode .site-footer strong {
   width: 0;
   opacity: 0;
   padding: 0.4em 0;
-  border-radius: 18px;
-  border: 1px solid #b6c5d6;
+  border-radius: 20px;
+  border: 0.1px solid #c0c0c0;
   font-size: 1rem;
-  background: #f7fafc;
+  background: #F8F0E3;
   outline: none;
   min-width: 170px;
   transition: width 0.3s, opacity 0.3s, padding 0.3s;
-  pointer-events: none;
+  pointer-events: visible;
 }
 
 .search-bar.active input[type="text"] {
@@ -368,8 +377,8 @@ body.dark-mode .site-footer strong {
   align-items: center;
 }
 .search-icon-btn img {
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
   filter: brightness(0.2);
   transition: filter 0.2s;
 }
@@ -381,4 +390,67 @@ body.dark-mode .search-bar input[type="text"] {
   background: #232946;
   color: #ffe066;
   border-color: #444;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #232946;
+  color: #ffe066;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: -0%; /* Show above button */
+  left: 280%;
+  margin-left: -110px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  pointer-events: none;
+}
+
+.tooltip:hover .tooltiptext,
+.tooltip:focus .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+body.dark-mode .tooltip .tooltiptext {
+  background: #ffe066;
+  color: #232946;
+}
+.about-link {
+  color: #ffffff;
+  text-decoration: rgb(255, 153, 0);
+  font-weight: bolder;
+  margin-left: -0.5rem;
+  transition: color 0.5s;
+}
+.about-link:hover {
+  color: #000000;
+  transition: color 0.5s;
+}
+.back-link {
+  background: transparent;
+  border: none;
+  color: #e0e0e0;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: color 0.75s ease;
+  text-decoration: 0.75s ease;
+  border-bottom: 3px solid transparent;
+  letter-spacing: 0.05em;
+}
+body.dark-mode .back-link {
+  color: #ffe066;
 }
