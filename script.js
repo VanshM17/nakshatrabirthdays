@@ -8,13 +8,13 @@ const members2025 = [
 
 //arrays for 2026
 const members2026 = [
-  { name: "Ghanshyam Jonwal", birthday: "17-Feb", title: "Member", photo: "placeholder.jpg" },
-  { name: "Meenakshi Sinha", birthday: "23-Feb", title: "Member", photo: "placeholder.jpg" },
-  { name: "Ayush Dewangan", birthday: "27-Jun", title: "Member", photo: "placeholder.jpg" },
-  { name: "Omkar Ahuja", birthday: "15-Aug", title: "Member", photo: "placeholder.jpg" },
-  { name: "Ayushman Bari", birthday: "15-Aug", title: "Member", photo: "placeholder.jpg" },
-  { name: "Divye Bajaj", birthday: "31-Aug", title: "Member", photo: "placeholder.jpg" },
-  { name: "Avantika Ambra", birthday: "13-Dec", title: "Member", photo: "placeholder.jpg" }
+  { name: "Ghanshyam Jonwal", birthday: "17-Feb", title: "Vice-President", photo: "placeholder.jpg" },
+  { name: "Meenakshi Sinha", birthday: "23-Feb", title: "Head of Astronomt", photo: "placeholder.jpg" },
+  { name: "Ayush Dewangan", birthday: "27-Jun", title: "Managing Director", photo: "placeholder.jpg" },
+  { name: "Omkar Ahuja", birthday: "15-Aug", title: "President", photo: "placeholder.jpg" },
+  { name: "Ayushman Bari", birthday: "15-Aug", title: "General Secretary", photo: "placeholder.jpg" },
+  { name: "Divye Bajaj", birthday: "31-Aug", title: "Vice-President", photo: "placeholder.jpg" },
+  { name: "Avantika Ambra", birthday: "13-Dec", title: "General Secretary", photo: "placeholder.jpg" }
 ];
 
 //arrays for 2027
@@ -35,7 +35,7 @@ const members2027 = [
   { name: "Dipankar Page", birthday: "21-Oct", title: "Execomm Member", photo: "placeholder.jpg" },
   { name: "Yogita Jha", birthday: "5-Nov", title: "Execomm Member", photo: "placeholder.jpg" },
   { name: "Nandini Nautiyal", birthday: "17-Nov", title: "Execomm Member", photo: "placeholder.jpg" },
-  { name: "Vansh Maheshwari", birthday: "17-Nov", title: "Execomm Member", photo: "placeholder.jpg" },
+  { name: "Vansh Maheshwari", birthday: "17-Nov", title: "Execomm Member", photo: "vansh.png" },
   { name: "Rishabh Jain", birthday: "23-Dec", title: "Execomm Member", photo: "placeholder.jpg" }
 ];
 
@@ -49,6 +49,8 @@ const members2028 = [
   { name: "Shreem", birthday: "29-Apr", title: "Member", photo: "placeholder.jpg" },
   { name: "Aujasvi Saxena", birthday: "2-May", title: "Member", photo: "placeholder.jpg" },
   { name: "Vini Bansode", birthday: "31-May", title: "Member", photo: "placeholder.jpg" },
+  { name: "Vamika Arya", birthday : "7-Jun",title: "Member", photo: "placeholder.jpg" },
+  { name: "Kartavya Vashishth", birthday : "7-Jun", title: "Member", photo: "placeholder.jpg" },
   { name: "Bhavya Goel", birthday: "11-Jul", title: "Member", photo: "placeholder.jpg" },
   { name: "Stuti Jain", birthday: "26-Sep", title: "Member", photo: "placeholder.jpg" },
   { name: "Laksh Agrawal", birthday: "8-Oct", title: "Member", photo: "placeholder.jpg" },
@@ -58,83 +60,27 @@ const members2028 = [
   { name: "Akshat Kashyap", birthday: "13-Dec", title: "Member", photo: "placeholder.jpg" }
 ];
 
-//Days-Until-Birthday-Left
-function daysUntilBirthday(birthdayStr) {
-  const [day, monStr] = birthdayStr.split('-');
-  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  const month = months.indexOf(monStr);
-  const today = new Date();
-  let year = today.getFullYear();
-  let nextBirthday = new Date(year, month, parseInt(day));
-
-  // If birthday this year has already passed, use next year
-  if (
-    today.getMonth() > month ||
-    (today.getMonth() === month && today.getDate() > parseInt(day))
-  ) {
-    nextBirthday.setFullYear(year + 1);
-  }
-
-  // Calculate difference in days
-  const oneDay = 1000 * 60 * 60 * 24;
-  const diffDays = Math.ceil((nextBirthday - today) / oneDay);
-
-  return diffDays;
-}
-
 
 function renderMembers(year, members) {
   const container = document.getElementById('members-' + year);
   container.innerHTML = '';
   members.forEach(member => {
-    const daysLeft = daysUntilBirthday(member.birthday);
+    // Split the date for badge format
+    const [day, mon] = member.birthday.split('-');
     container.innerHTML += `
       <div class="member">
         <img src="images/${member.photo}" alt="${member.name}" class="member-photo">
         <div class="member-info">
           <div class="member-name">${member.name}</div>
-          <div class="member-title ${member.title.toLowerCase().replace(/\s+/g, '-')}">${member.title}</div>
-          <div class="member-birthday">${member.birthday}</div>
+          <div class="member-title">${member.title}</div>
         </div>
-        <div class="member-daysleft">
-          ${daysLeft === 0 ? "<span class='bday-today'>🎉 Today!</span>" : `${daysLeft} day${daysLeft > 1 ? "s" : ""} left`}
+        <div class="member-date-badge">
+          <div class="badge-day">${day}</div>
+          <div class="badge-mon">${mon.toUpperCase()}</div>
         </div>
       </div>
     `;
   });
-}
-
-// 3. Sort function (ONE for all years)
-function sortMembers(year) {
-  let members, select;
-  if (year === '2025') {
-    members = members2025.slice();
-    select = document.getElementById('sort-2025').value;
-  } else if (year === '2026') {
-    members = members2026.slice();
-    select = document.getElementById('sort-2026').value;
-  } else if (year === '2027') {
-    members = members2027.slice();
-    select = document.getElementById('sort-2027').value;
-  } else if (year === '2028') {
-    members = members2028.slice();
-    select = document.getElementById('sort-2028').value;
-  }
-
-  if (select === 'dob') {
-    members.sort((a, b) => {
-      const parse = s => {
-        let [day, mon] = s.split('-');
-        return new Date(2000, ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].indexOf(mon), parseInt(day));
-      };
-      return parse(a.birthday) - parse(b.birthday);
-    });
-  } else if (select === 'alpha') {
-    members.sort((a, b) => a.name.localeCompare(b.name));
-  }
-  // else 'general': keep original order
-
-  renderMembers(year, members);
 }
 
 function openYear(evt, year) {
@@ -170,23 +116,32 @@ window.onload = function() {
 // Dark mode toggle
 document.addEventListener('DOMContentLoaded', function() {
   const toggle = document.getElementById('darkModeToggle');
-  // Load preference from localStorage
+
+  // Set initial state based on localStorage
   if (localStorage.getItem('dark-mode') === 'true') {
     document.body.classList.add('dark-mode');
     toggle.textContent = '☀️';
+    toggle.title = "Switch to light mode";
+  } else {
+    document.body.classList.remove('dark-mode');
+    toggle.textContent = '🌙';
+    toggle.title = "Switch to dark mode";
   }
+
   toggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
-    // Change icon
     if (document.body.classList.contains('dark-mode')) {
       toggle.textContent = '☀️';
+      toggle.title = "Switch to light mode";
       localStorage.setItem('dark-mode', 'true');
     } else {
       toggle.textContent = '🌙';
+      toggle.title = "Switch to dark mode";
       localStorage.setItem('dark-mode', 'false');
     }
   });
 });
+
 
 // --- Easter Egg: Type "stars" to launch stars animation ---
 let typed = '';
@@ -209,7 +164,7 @@ function launchStars() {
     star.style.left = Math.random() * window.innerWidth + 'px';
     star.style.animationDelay = (Math.random() * 2) + 's';
     document.body.appendChild(star);
-    setTimeout(() => star.remove(), 6000); // Remove after 3.2 seconds
+    setTimeout(() => star.remove(), 6000); // Remove after 6 seconds
   }
 }
 
@@ -237,14 +192,21 @@ function launchAsteroids() {
     // Boom effect at the end of fall
     setTimeout(() => {
       asteroid.classList.add('asteroid-crash');
-      setTimeout(() => asteroid.remove(), 500);
-    }, 3000 + parseFloat(asteroid.style.animationDelay) * 1000);
+      // Play explosion sound
+      const sound = document.getElementById('explosionSound');
+      if (sound) {
+        sound.currentTime = 0.1; // rewind if triggered rapidly
+        sound.play();
+      }
+      setTimeout(() => asteroid.remove(), 0o0);
+    }, 1600 + parseFloat(asteroid.style.animationDelay) * 1000);
   }
-  // Optional: shake the page for effect
+  //shake the page for effect
   document.body.classList.add('shake');
-  setTimeout(() => document.body.classList.remove('shake'), 500);
+  setTimeout(() => document.body.classList.remove('shake'), 900);
 }
-// Expanding search bar logic
+
+//expanding search bar logic
 document.addEventListener('DOMContentLoaded', function() {
   const searchBar = document.getElementById('searchBar');
   const searchIconBtn = document.getElementById('searchIconBtn');
@@ -275,10 +237,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Optional: Pressing ESC closes the search bar
   memberSearch.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
+    if (e.key === 'escape') {
       searchBar.classList.remove('active');
       memberSearch.value = '';
       searchMembers();
     }
+  });
+});
+// Image popup logic
+const popup = document.getElementById('image-popup');
+const popupImg = popup.querySelector('img');
+
+document.querySelectorAll('.member-photo').forEach(img => {
+  img.addEventListener('mouseenter', function(e) {
+    popupImg.src = img.src;
+    popup.style.display = 'block';
+    // Position the popup near the image (centered)
+    const rect = img.getBoundingClientRect();
+    popup.style.top = (window.scrollY + rect.top - 10) + 'px';
+    popup.style.left = (window.scrollX + rect.right + 20) + 'px';
+  });
+  img.addEventListener('mousemove', function(e) {
+    // Optional: Move popup with cursor
+    popup.style.top = (window.scrollY + e.clientY - 80) + 'px';
+    popup.style.left = (window.scrollX + e.clientX + 30) + 'px';
+  });
+  img.addEventListener('mouseleave', function() {
+    popup.style.display = 'none';
+    popupImg.src = '';
   });
 });
