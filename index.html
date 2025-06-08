@@ -3,21 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Society Birthdays | Nakshatra</title>
+  <title>Birthdays | Nakshatra</title>
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <audio id="explosionSound" src="sounds/explosion.mp3" preload="auto"></audio>
  <header>
+  <!--Nakshatra Logo-->
   <img src="logo.png" alt="Nakshatra Society Logo" class="logo">
-  <h1>🎂 Nakshatra Society Birthdays</h1>
-  <p>Celebrating our stars ✨</p>
- <button id="darkModeToggle" class="dark-mode-toggle" title="Switch to dark mode" aria-label="Toggle dark mode">
+  <h1>🎂 Nakshatra Birthdays</h1>
+  <!-- About Page -->
+<nav>
+  <H3><a href="about.html" class="about-link">About Us</a></H3>
+</nav>
+
+  <H4>Celebrating our stars ✨</H4>
+  <div class="tooltip">
+ <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
   🌙
 </button>
+<span class = "tooltiptext" id="darkModeTooltip">Switch to dark mode</span>
+</div>
 </header>
   <div class="tabs">
+    
     <button class="tab-button" onclick="openYear(event, '2025')">2025</button>
     <button class="tab-button" onclick="openYear(event, '2026')">2026</button>
     <button class="tab-button" onclick="openYear(event, '2027')">2027</button>
@@ -54,7 +63,7 @@
       </div>
     </div>
     <div class="member">
-      <img src="placeholder.jpg" alt="Vatsal Shrivastava" class="member-photo">
+      <img src="placeholder.jpg" alt="Vatsal Shrivast" class="member-photo">
       <div class="member-info">
         <div class="member-name">Vatsal Shrivastava</div>
         <div class="member-title">Head of Design</div>
@@ -362,6 +371,22 @@
       </div>
     </div>
     <div class="member">
+      <img src="placeholder.jpg" alt="Stuti" class="member-photo">
+      <div class="member-info">
+        <div class="member-name">Kartavya</div>
+        <div class="member-title">Member</div>
+        <div class="member-birthday">7-Jun</div>
+      </div>
+    </div>
+    <div class="member">
+      <img src="placeholder.jpg" alt="Stuti" class="member-photo">
+      <div class="member-info">
+        <div class="member-name">Vamika Arya</div>
+        <div class="member-title">Member</div>
+        <div class="member-birthday">7-Jun</div>
+      </div>
+    </div>
+    <div class="member">
       <img src="placeholder.jpg" alt="Bhavya" class="member-photo">
       <div class="member-info">
         <div class="member-name">Bhavya Goel</div>
@@ -434,5 +459,11 @@
     </div>
   </div>
 </footer>
+<audio id="explosionSound" src="sounds/explosion.mp3" preload="auto"></audio>
+<!-- Popup for enlarged image -->
+<div id="image-popup" style="display:none;">
+  <img src="" alt="Enlarged" />
+</div>
+</div>
 </body>
 </html>
