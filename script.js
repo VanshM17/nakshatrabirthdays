@@ -60,29 +60,6 @@ const members2028 = [
   { name: "Akshat Kashyap", birthday: "13-Dec", title: "Member", photo: "placeholder.jpg" }
 ];
 
-
-function renderMembers(year, members) {
-  const container = document.getElementById('members-' + year);
-  container.innerHTML = '';
-  members.forEach(member => {
-    // Split the date for badge format
-    const [day, mon] = member.birthday.split('-');
-    container.innerHTML += `
-      <div class="member">
-        <img src="images/${member.photo}" alt="${member.name}" class="member-photo">
-        <div class="member-info">
-          <div class="member-name">${member.name}</div>
-          <div class="member-title">${member.title}</div>
-        </div>
-        <div class="member-date-badge">
-          <div class="badge-day">${day}</div>
-          <div class="badge-mon">${mon.toUpperCase()}</div>
-        </div>
-      </div>
-    `;
-  });
-}
-
 function openYear(evt, year) {
   // Hide all tab contents
   var tabcontent = document.getElementsByClassName("tab-content");
@@ -107,7 +84,7 @@ function openYear(evt, year) {
 
 // Open the first tab by default when the page loads
 window.onload = function() {
-  var firstTab = document.getElementsByClassName('tab-button')[0];
+  var firstTab = document.getElementsByClassName('tab-button')[2];
   if (firstTab) {
     firstTab.click(); // This will now also render members because of the updated openYear
   }
@@ -141,9 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-
-
-// --- Easter Egg: Type "stars" to launch stars animation ---
+// Type "stars" to launch stars animation
 let typed = '';
 document.addEventListener('keydown', function(e) {
   if (e.ctrlKey || e.altKey || e.metaKey) return; // ignore shortcuts
@@ -168,7 +143,7 @@ function launchStars() {
   }
 }
 
-// --- Easter Egg: Type "asteroid" to launch asteroid shower ---
+//Type "asteroid" to launch asteroid shower
 let typedAst = '';
 document.addEventListener('keydown', function(e) {
   if (e.ctrlKey || e.altKey || e.metaKey) return;
@@ -201,7 +176,7 @@ function launchAsteroids() {
       setTimeout(() => asteroid.remove(), 0o0);
     }, 1600 + parseFloat(asteroid.style.animationDelay) * 1000);
   }
-  //shake the page for effect
+  //shake effect
   document.body.classList.add('shake');
   setTimeout(() => document.body.classList.remove('shake'), 900);
 }
@@ -235,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Optional: Pressing ESC closes the search bar
+  //ESC closes the search bar
   memberSearch.addEventListener('keydown', function(e) {
     if (e.key === 'escape') {
       searchBar.classList.remove('active');
