@@ -226,7 +226,7 @@
       <img src="placeholder.jpg" alt="Divye Bajaj" class="member-photo">
       <div class="member-info">
         <div class="member-name">Vaishnavi Kushwaha</div>
-        <div class="member-title execomm">Execomm</div>
+        <div class="member-title execomm">Execomm Member</div>
         <div class="member-birthday">23-May</div>
       </div>
     </div>
@@ -464,48 +464,9 @@
 <div id="image-popup" style="display:none;">
   <img src="" alt="Enlarged" />
 </div>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Birthday Tooltip Demo</title>
-  
-</head>
-<body>
-
-  <h2>Astronomy Club Members</h2>
-
-  <!-- Example member card -->
-  <div class="member-card">
-    <strong>Vansh</strong> - President<br>
-    Birthday: <span class="member-birthday">17-Nov</span>
-  </div>
-
-  <!-- Example member card -->
-  <div class="member-card">
-    <strong>Ayush</strong> - Vice President<br>
-    Birthday: <span class="member-birthday">29-Jul</span>
-  </div>
-
-  <!-- Example member card -->
-  <div class="member-card">
-    <strong>Paridhi</strong> - Treasurer<br>
-    Birthday: <span class="member-birthday">7-Aug</span>
-  </div>
-
   <!-- Tooltip element -->
   <div id="birthday-tooltip" style="display:none; position:absolute; background:#222; color:#fff; padding:6px 12px; border-radius:4px; font-size:14px; z-index:1000; pointer-events:none;"></div>
 
-  <style>
-
-    /* Optional: Style for the member card */
-    .member-card {
-      background: #c90000;
-      border-radius: 8px;
-      padding: 10px;
-      margin: 10px 0;
-      width: 300px;
-    }
-  </style>
   <script>
     // Utility function to calculate days left until next birthday
     function daysUntilBirthday(birthdayStr) {
@@ -538,13 +499,13 @@
           const daysLeft = daysUntilBirthday(birthdayEl.textContent.trim());
           tooltip.textContent = `${daysLeft} days left`;
           tooltip.style.display = 'block';
-          tooltip.style.left = e.pageX + 'px';
-          tooltip.style.top = (e.pageY + 15) + 'px';
+          tooltip.style.left = (e.pageX + 0) + 'px';
+          tooltip.style.top = (e.pageY + 0) + 'px';
         });
         // Mouse move: move tooltip with cursor
         birthdayEl.addEventListener('mousemove', function(e) {
-          tooltip.style.left = e.pageX + 'px';
-          tooltip.style.top = (e.pageY + 15) + 'px';
+          tooltip.style.left = (e.pageX + 20) + 'px';
+          tooltip.style.top = (e.pageY - 5) + 'px';
         });
         // Mouse leave: hide tooltip
         birthdayEl.addEventListener('mouseleave', function() {
@@ -556,6 +517,45 @@
     // Call the function when the page loads
     document.addEventListener('DOMContentLoaded', attachBirthdayTooltips);
   </script>
+
+ <style>
+    /* Optional: Make birthdays stand out */
+    .member-birthday {
+      color: #626262;
+      cursor: pointer;
+      display: flex;
+      margin: 0 5px;
+    }
+    /* Optional: Style for the member card */
+    .member-card {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 1px;
+      margin: 10px 0;
+      width: 300px;
+    }
+
+    #birthday-tooltip {
+  font-family: sans-serif;
+  background-color: transparent;
+  position: absolute;
+  z-index: 1000;
+  background: transparent;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0px 18px;
+  border-radius: 64px;
+  box-shadow: 0 4px 16px #f8f0e3;
+  opacity: 0.8;
+  pointer-events: visiblePainted;
+  text-align: center;
+  letter-spacing: .5px;
+  transition: opacity 0.25s;
+}
+  </style>
+
 </body>
 </html>
 
