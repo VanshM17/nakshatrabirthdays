@@ -1,14 +1,16 @@
 body {
   font-family: 'Coolvetica', serif;
-  background: #F8F0E3;
+  background:  linear-gradient(90deg,  #f8e7ca 20%, #f8f0e3 100%);
+;
   margin: 0;
   padding: 0;
   color: #333;
 }
 header {
-  font-family: 'Confortaa', serif;
+  font-family: 'Coolvetica', serif;
+  letter-spacing: 1px;
   background: linear-gradient(90deg,#94c4ff 0%, #7eb5fa 25%, #5f97ff 75%, #3d94ff 100%);
-  color: rgb(0, 0, 0);
+  color: #1d1e24;
   padding: 1.75rem 1.5rem;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -23,7 +25,8 @@ header {
 .tabs {
   display: flex;
   justify-content: center;
-  background: #F8F0E3;
+  background: linear-gradient(90deg,  #f8e7ca 20%, #f8efe2 100%);
+;
 }
 .tab-button {
   background: transparent;
@@ -46,7 +49,7 @@ header {
   display: none;
   max-width: 720px;
   margin: 2rem auto;
-  background:  #F8F0E3;
+  background:  linear-gradient(90deg,  #f8e7ca 10%, #f8eede 100%);
   border-radius: 12px;
   box-shadow: 1 1px 1px rgba(0,0,0,0.1);
   padding: 2rem 2.5rem;
@@ -108,6 +111,7 @@ header {
   color: #666;
   font-size: 1rem;
   font-style: italic;
+
 }
 @media (max-width: 600px) {
   .member {
@@ -145,7 +149,7 @@ body.dark-mode .dark-mode-toggle {
 
 /* Dark mode styles */
 body.dark-mode {
-  background: #1e2235;
+  background: linear-gradient(90deg,#1d2132 0%, #21263a 100%);
   color: #f3f3f3;
 }
 
@@ -156,8 +160,8 @@ body.dark-mode header {
 
 body.dark-mode .tabs,
 body.dark-mode .blur-backdrop {
-  background: rgba(30, 34, 54, 0.8);
-  backdrop-filter: blur(12px);
+  background: linear-gradient(90deg,#1d2132 0%, #21263a 100%);
+  backdrop-filter: blur(2px);
 }
 
 body.dark-mode .tab-button {
@@ -172,7 +176,7 @@ body.dark-mode .tab-button:hover {
 
 body.dark-mode .tab-content {
   letter-spacing: 0.5px;
-  background: #1d2132;
+  background:linear-gradient(90deg,#1e2236 20%, #202538 100%);
   color: #f3f3f3;
   box-shadow: 1 0px 0px #ffe066;
 }
@@ -185,7 +189,7 @@ body.dark-mode .member-name {
 }
 body.dark-mode .member-title {
   color: #F8F0E3;
-  background: #1d2132;
+  background: linear-gradient(90deg,#1f2236 20%, #202538 100%);
 }
 body.dark-mode .member-birthday {
   color: #b3b3b3;
@@ -296,9 +300,10 @@ rgba(0,0,0,0.1);
 }
 
 .site-footer {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   letter-spacing: 1px;
-  font-weight: 15;
-  font-size: 1.05rem;
+  font-weight: 3;
+  font-size: 1.03rem;
   color: #ffffff;
 }
 
@@ -309,7 +314,7 @@ rgba(0,0,0,0.1);
 .footer-links a {
   display: inline-block;
   margin: 0 0.7em;
-  opacity: 0.8;
+  opacity: 0.9;
   transition: opacity 1s, transform 0.4s;
 }
 .footer-links a:hover {
@@ -318,8 +323,8 @@ rgba(0,0,0,0.1);
 }
 
 .footer-links img {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   vertical-align: middle;
   filter: brightness(1) invert(1);
 }
@@ -341,9 +346,9 @@ body.dark-mode .site-footer strong {
 
 .search-bar {
   margin-left: auto;
-  display: flex;
-  align-items: center;
-  position: right;
+  display: inline-flex;
+  align-items: left ;
+  position: left;
   transition: width 0.3s;
 }
 
@@ -352,9 +357,9 @@ body.dark-mode .site-footer strong {
   opacity: 0;
   padding: 0.4em 0;
   border-radius: 20px;
-  border: 0.1px solid #c0c0c0;
+  border: transparent;
   font-size: 1rem;
-  background: #F8F0E3;
+  background: #f8e7ca;
   outline: none;
   min-width: 170px;
   transition: width 0.3s, opacity 0.3s, padding 0.3s;
@@ -387,7 +392,7 @@ body.dark-mode .site-footer strong {
 }
 
 body.dark-mode .search-bar input[type="text"] {
-  background: #232946;
+  background: #1e2235;
   color: #ffe066;
   border-color: #444;
 }
