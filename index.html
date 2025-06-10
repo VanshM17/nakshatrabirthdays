@@ -14,7 +14,7 @@
   <h1>🎂 Nakshatra Birthdays</h1>
   <!-- About Page -->
 <nav>
-  <H3><a href="about.html" class="about-link">About Us</a></H3>
+  <H3><a href="https://nakshatrabirthdays.netlify.app/about" class="about-link">About Us</a></H3>
 </nav>
 
   <H4>Celebrating our stars ✨</H4>
@@ -465,5 +465,97 @@
   <img src="" alt="Enlarged" />
 </div>
 </div>
+  </div>
+  <!-- Tooltip element -->
+  <div id="birthday-tooltip" style="display:none; position:absolute; background:#222; color:#fff; padding:6px 12px; border-radius:4px; font-size:14px; z-index:1000; pointer-events:none;"></div>
+
+  <script>
+    // Utility function to calculate days left until next birthday
+    function daysUntilBirthday(birthdayStr) {
+      const [day, monthStr] = birthdayStr.split('-');
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const month = monthNames.indexOf(monthStr);
+      const today = new Date();
+      let year = today.getFullYear();
+      let birthday = new Date(year, month, parseInt(day));
+
+      // If birthday has already passed this year, use next year
+      if (
+        today.getMonth() > month ||
+        (today.getMonth() === month && today.getDate() > parseInt(day))
+      ) {
+        birthday = new Date(year + 1, month, parseInt(day));
+      }
+
+      // Calculate difference in days
+      const diffTime = birthday - today;
+      return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    }
+
+    // Attach tooltip events after DOM is loaded
+    function attachBirthdayTooltips() {
+      const tooltip = document.getElementById('birthday-tooltip');
+      document.querySelectorAll('.member-birthday').forEach(birthdayEl => {
+        // Mouse enter: show tooltip
+        birthdayEl.addEventListener('mouseenter', function(e) {
+          const daysLeft = daysUntilBirthday(birthdayEl.textContent.trim());
+          tooltip.textContent = `${daysLeft} days left`;
+          tooltip.style.display = 'block';
+          tooltip.style.left = (e.pageX + 0) + 'px';
+          tooltip.style.top = (e.pageY + 0) + 'px';
+        });
+        // Mouse move: move tooltip with cursor
+        birthdayEl.addEventListener('mousemove', function(e) {
+          tooltip.style.left = (e.pageX + 20) + 'px';
+          tooltip.style.top = (e.pageY - 5) + 'px';
+        });
+        // Mouse leave: hide tooltip
+        birthdayEl.addEventListener('mouseleave', function() {
+          tooltip.style.display = 'none';
+        });
+      });
+    }
+
+    // Call the function when the page loads
+    document.addEventListener('DOMContentLoaded', attachBirthdayTooltips);
+  </script>
+
+ <style>
+    /* Optional: Make birthdays stand out */
+    .member-birthday {
+      color: #626262;
+      cursor: pointer;
+      display: flex;
+      margin: 0 5px;
+    }
+    /* Optional: Style for the member card */
+    .member-card {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 1px;
+      margin: 10px 0;
+      width: 300px;
+    }
+
+  #birthday-tooltip {
+  font-family: sans-serif;
+  background-color: transparent;
+  position: absolute;
+  z-index: 1000;
+  background: transparent;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0px 18px;
+  border-radius: 64px;
+  box-shadow: 0 2px 16px #f8f0e3;
+  opacity: 0.8;
+  pointer-events: visiblePainted;
+  text-align: center;
+  letter-spacing: .5px;
+  transition: opacity 0.25s;
+}
+  </style>
 </body>
 </html>
