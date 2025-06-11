@@ -10,11 +10,11 @@
 <body>
  <header>
   <!--Nakshatra Logo-->
-  <img src="logo.png" alt="Nakshatra Society Logo" class="logo">
+  <img src="logo.png" draggable="false"  alt="Nakshatra Society Logo" class="logo">
   <h1>🎂 Nakshatra Birthdays</h1>
   <!-- About Page -->
 <nav>
-  <H3><a href="https://nakshatrabirthdays.netlify.app/about" class="about-link">About Us</a></H3>
+  <H3><a href="about.html" class="about-link">About Us</a></H3>
 </nav>
 
   <H4>Celebrating our stars ✨</H4>
@@ -31,6 +31,7 @@
     <button class="tab-button" onclick="openYear(event, '2026')">2026</button>
     <button class="tab-button" onclick="openYear(event, '2027')">2027</button>
     <button class="tab-button" onclick="openYear(event, '2028')">2028</button>
+     <span class="year-glider"></span>
   </div>
   <div class="search-bar" id="searchBar">
   <button class="search-icon-btn" id="searchIconBtn" aria-label="Search">
@@ -43,6 +44,10 @@
     oninput="searchMembers()"
     autocomplete="off"
   />
+</div>
+
+<div class="fun-fact-slider">
+  <div class="fun-fact-text"></div>
 </div>
   <!-- 2025 -->
   <div id="2025" class="tab-content">
@@ -226,7 +231,7 @@
       <img src="placeholder.jpg" alt="Divye Bajaj" class="member-photo">
       <div class="member-info">
         <div class="member-name">Vaishnavi Kushwaha</div>
-        <div class="member-title execomm">Execomm</div>
+        <div class="member-title execomm">Execomm Member</div>
         <div class="member-birthday">23-May</div>
       </div>
     </div>
@@ -464,13 +469,11 @@
 <div id="image-popup" style="display:none;">
   <img src="" alt="Enlarged" />
 </div>
-</div>
-  </div>
   <!-- Tooltip element -->
   <div id="birthday-tooltip" style="display:none; position:absolute; background:#222; color:#fff; padding:6px 12px; border-radius:4px; font-size:14px; z-index:1000; pointer-events:none;"></div>
 
   <script>
-    // Utility function to calculate days left until next birthday
+    //Calculate days left until next birthday
     function daysUntilBirthday(birthdayStr) {
       const [day, monthStr] = birthdayStr.split('-');
       const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -479,7 +482,6 @@
       let year = today.getFullYear();
       let birthday = new Date(year, month, parseInt(day));
 
-      // If birthday has already passed this year, use next year
       if (
         today.getMonth() > month ||
         (today.getMonth() === month && today.getDate() > parseInt(day))
@@ -487,16 +489,13 @@
         birthday = new Date(year + 1, month, parseInt(day));
       }
 
-      // Calculate difference in days
       const diffTime = birthday - today;
       return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     }
-
-    // Attach tooltip events after DOM is loaded
+    
     function attachBirthdayTooltips() {
       const tooltip = document.getElementById('birthday-tooltip');
       document.querySelectorAll('.member-birthday').forEach(birthdayEl => {
-        // Mouse enter: show tooltip
         birthdayEl.addEventListener('mouseenter', function(e) {
           const daysLeft = daysUntilBirthday(birthdayEl.textContent.trim());
           tooltip.textContent = `${daysLeft} days left`;
@@ -504,31 +503,25 @@
           tooltip.style.left = (e.pageX + 0) + 'px';
           tooltip.style.top = (e.pageY + 0) + 'px';
         });
-        // Mouse move: move tooltip with cursor
         birthdayEl.addEventListener('mousemove', function(e) {
           tooltip.style.left = (e.pageX + 20) + 'px';
           tooltip.style.top = (e.pageY - 5) + 'px';
         });
-        // Mouse leave: hide tooltip
         birthdayEl.addEventListener('mouseleave', function() {
           tooltip.style.display = 'none';
         });
       });
     }
-
-    // Call the function when the page loads
     document.addEventListener('DOMContentLoaded', attachBirthdayTooltips);
   </script>
 
  <style>
-    /* Optional: Make birthdays stand out */
     .member-birthday {
       color: #626262;
       cursor: pointer;
       display: flex;
       margin: 0 5px;
     }
-    /* Optional: Style for the member card */
     .member-card {
       background: #f9f9f9;
       border-radius: 8px;
@@ -557,5 +550,93 @@
   transition: opacity 0.25s;
 }
   </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+  });
+});
+
+const funFacts = [
+  "On 7th January, we have a triple header as there are 3 birthdays!",
+  "With 48 people as shown in this list, there's a 12.17% chance that 3 people share the same birthday!",
+  "Fun fact: In a room of 23 people, two people sharing the same birthday is 50%! (Ofcourse not learnt from a Nakshatra post XD)",
+  "There are 5 days with two birthdays happening at once!"
+];
+
+const funFactText = document.querySelector('.fun-fact-text');
+let factIndex = 0;
+let isTyping = false;
+let isErasing = false;
+let currentText = '';
+let currentIndex = 0;
+
+function typewriter() {
+  if (!isTyping && !isErasing) {
+    isTyping = true;
+    currentText = funFacts[factIndex];
+    currentIndex = 0;
+    funFactText.textContent = '';
+    setTimeout(type, 100);
+  } else if (isTyping) {
+    if (currentIndex < currentText.length) {
+      funFactText.textContent += currentText[currentIndex];
+      currentIndex++;
+      setTimeout(type, Math.random() * 20 + 30);
+    } else {
+      isTyping = false;
+      setTimeout(() => {
+        isErasing = true;
+        setTimeout(erase, 100);
+      }, 2000);
+    }
+  } else if (isErasing) {
+    if (currentIndex > 0) {
+      funFactText.textContent = currentText.substring(0, currentIndex - 1);
+      currentIndex--;
+      setTimeout(erase, 20);
+    } else {
+      isErasing = false;
+      factIndex = (factIndex + 1) % funFacts.length;
+      setTimeout(typewriter, 500);
+    }
+  }
+}
+
+function type() {
+  if (currentIndex < currentText.length) {
+    funFactText.textContent += currentText[currentIndex];
+    currentIndex++;
+    setTimeout(type, Math.random() * 10 + 30);
+  } else {
+    isTyping = false;
+    setTimeout(() => {
+      isErasing = true;
+      erase();
+    }, 2000);
+  }
+}
+
+function erase() {
+  if (currentIndex > 0) {
+    funFactText.textContent = currentText.substring(0, currentIndex - 1);
+    currentIndex--;
+    setTimeout(erase, 10);
+  } else {
+    isErasing = false;
+    factIndex = (factIndex + 1) % funFacts.length;
+    setTimeout(typewriter, 500);
+  }
+}
+
+typewriter();
+
+</script>
+
+</body>
+</html>
 </body>
 </html>
