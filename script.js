@@ -59,7 +59,6 @@ const members2028 = [
   { name: "Gaurish Malhotra", birthday: "7-Dec", title: "Member", photo: "placeholder.jpg" },
   { name: "Akshat Kashyap", birthday: "13-Dec", title: "Member", photo: "placeholder.jpg" }
 ];
-
 function openYear(evt, year) {
   // Hide all tab contents
   var tabcontent = document.getElementsByClassName("tab-content");
@@ -242,3 +241,14 @@ document.querySelectorAll('.member-photo').forEach(img => {
     popupImg.src = '';
   });
 });
+
+//Disable drag selection in images..
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('img').forEach(img => {
+    img.setAttribute('draggable', 'false');
+    img.addEventListener('dragstart', function(e) {
+      e.preventDefault();
+    });
+  });
+});
+
