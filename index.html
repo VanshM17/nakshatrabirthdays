@@ -236,6 +236,14 @@
       </div>
     </div>
     <div class="member">
+      <img src="placeholder.jpg" alt="Harshit" class="member-photo">
+      <div class="member-info">
+        <div class="member-name">Harshit Chauhan</div>
+        <div class="member-title execomm">Execomm Member</div>
+        <div class="member-birthday">11-Jun</div>
+      </div>
+    </div>
+    <div class="member">
       <img src="placeholder.jpg" alt="Srishti" class="member-photo">
       <div class="member-info">
         <div class="member-name">Srishti Tayal</div>
@@ -473,7 +481,7 @@
   <div id="birthday-tooltip" style="display:none; position:absolute; background:#222; color:#fff; padding:6px 12px; border-radius:4px; font-size:14px; z-index:1000; pointer-events:none;"></div>
 
   <script>
-    //Calculate days left until next birthday
+    // Utility function to calculate days left until next birthday
     function daysUntilBirthday(birthdayStr) {
       const [day, monthStr] = birthdayStr.split('-');
       const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -482,6 +490,7 @@
       let year = today.getFullYear();
       let birthday = new Date(year, month, parseInt(day));
 
+      // If birthday has already passed this year, use next year
       if (
         today.getMonth() > month ||
         (today.getMonth() === month && today.getDate() > parseInt(day))
@@ -489,13 +498,16 @@
         birthday = new Date(year + 1, month, parseInt(day));
       }
 
+      // Calculate difference in days
       const diffTime = birthday - today;
       return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     }
-    
+
+    // Attach tooltip events after DOM is loaded
     function attachBirthdayTooltips() {
       const tooltip = document.getElementById('birthday-tooltip');
       document.querySelectorAll('.member-birthday').forEach(birthdayEl => {
+        // Mouse enter: show tooltip
         birthdayEl.addEventListener('mouseenter', function(e) {
           const daysLeft = daysUntilBirthday(birthdayEl.textContent.trim());
           tooltip.textContent = `${daysLeft} days left`;
@@ -503,25 +515,31 @@
           tooltip.style.left = (e.pageX + 0) + 'px';
           tooltip.style.top = (e.pageY + 0) + 'px';
         });
+        // Mouse move: move tooltip with cursor
         birthdayEl.addEventListener('mousemove', function(e) {
           tooltip.style.left = (e.pageX + 20) + 'px';
           tooltip.style.top = (e.pageY - 5) + 'px';
         });
+        // Mouse leave: hide tooltip
         birthdayEl.addEventListener('mouseleave', function() {
           tooltip.style.display = 'none';
         });
       });
     }
+
+    // Call the function when the page loads
     document.addEventListener('DOMContentLoaded', attachBirthdayTooltips);
   </script>
 
  <style>
+    /* Optional: Make birthdays stand out */
     .member-birthday {
       color: #626262;
       cursor: pointer;
       display: flex;
       margin: 0 5px;
     }
+    /* Optional: Style for the member card */
     .member-card {
       background: #f9f9f9;
       border-radius: 8px;
@@ -553,6 +571,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Disable right-click (context menu) on all images
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('contextmenu', function(e) {
       e.preventDefault();
@@ -564,7 +583,9 @@ const funFacts = [
   "On 7th January, we have a triple header as there are 3 birthdays!",
   "With 48 people as shown in this list, there's a 12.17% chance that 3 people share the same birthday!",
   "Fun fact: In a room of 23 people, two people sharing the same birthday is 50%! (Ofcourse not learnt from a Nakshatra post XD)",
-  "There are 5 days with two birthdays happening at once!"
+  "There are 5 days with two birthdays happening at once!",
+  "November is the month with the most birthdays — with 6 members celebrating!",
+  // Add more fun facts here
 ];
 
 const funFactText = document.querySelector('.fun-fact-text');
@@ -576,17 +597,20 @@ let currentIndex = 0;
 
 function typewriter() {
   if (!isTyping && !isErasing) {
+    // Start typing the next fact
     isTyping = true;
     currentText = funFacts[factIndex];
     currentIndex = 0;
     funFactText.textContent = '';
     setTimeout(type, 100);
   } else if (isTyping) {
+    // Continue typing
     if (currentIndex < currentText.length) {
       funFactText.textContent += currentText[currentIndex];
       currentIndex++;
       setTimeout(type, Math.random() * 20 + 30);
     } else {
+      // Finished typing, start erasing after a pause
       isTyping = false;
       setTimeout(() => {
         isErasing = true;
@@ -594,11 +618,13 @@ function typewriter() {
       }, 2000);
     }
   } else if (isErasing) {
+    // Continue erasing
     if (currentIndex > 0) {
       funFactText.textContent = currentText.substring(0, currentIndex - 1);
       currentIndex--;
       setTimeout(erase, 20);
     } else {
+      // Finished erasing, move to next fact
       isErasing = false;
       factIndex = (factIndex + 1) % funFacts.length;
       setTimeout(typewriter, 500);
@@ -632,6 +658,7 @@ function erase() {
   }
 }
 
+// Start the slider
 typewriter();
 
 </script>
