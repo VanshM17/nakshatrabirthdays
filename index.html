@@ -228,7 +228,7 @@
       </div>
     </div>
      <div class="member">
-      <img src="placeholder.jpg" alt="Divye Bajaj" class="member-photo">
+      <img src="placeholder.jpg" alt="Vaishnavi" class="member-photo">
       <div class="member-info">
         <div class="member-name">Vaishnavi Kushwaha</div>
         <div class="member-title execomm">Execomm Member</div>
@@ -585,8 +585,7 @@ const funFacts = [
   "Fun fact: In a room of 23 people, two people sharing the same birthday is 50%! (Ofcourse not learnt from a Nakshatra post XD)",
   "There are 5 days with two birthdays happening at once!",
   "November is the month with the most birthdays — with 6 members celebrating!",
-  "Your birthdate not listed here, ping me!"
-  // Add more fun facts here
+  "Your birthday not listed here? ping me!"
 ];
 
 const funFactText = document.querySelector('.fun-fact-text');
@@ -598,7 +597,7 @@ let currentIndex = 0;
 
 function typewriter() {
   if (!isTyping && !isErasing) {
-    // Start typing the next fact
+    //typing the next fact
     isTyping = true;
     currentText = funFacts[factIndex];
     currentIndex = 0;
@@ -611,7 +610,7 @@ function typewriter() {
       currentIndex++;
       setTimeout(type, Math.random() * 20 + 30);
     } else {
-      // Finished typing, start erasing after a pause
+      // Finished typing
       isTyping = false;
       setTimeout(() => {
         isErasing = true;
@@ -625,7 +624,7 @@ function typewriter() {
       currentIndex--;
       setTimeout(erase, 20);
     } else {
-      // Finished erasing, move to next fact
+      // Finished erasing
       isErasing = false;
       factIndex = (factIndex + 1) % funFacts.length;
       setTimeout(typewriter, 500);
