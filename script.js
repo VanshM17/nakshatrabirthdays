@@ -72,6 +72,14 @@ function openYear(evt, year) {
     tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
   }
 
+document.addEventListener("scroll", function() {
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+  var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrollPercent = (scrollTop / docHeight) * 100;
+  document.getElementById("scrollProgressBar").style.width = scrollPercent + "%";
+});
+
+
   // Show the selected tab content and set the button as active
   document.getElementById(year).style.display = "block";
   evt.currentTarget.className += " active";
@@ -81,7 +89,8 @@ function openYear(evt, year) {
 }
 
 
-// Open the first tab by default when the page loads
+
+// Open the desired tab by default when the site loads
 window.onload = function() {
   var firstTab = document.getElementsByClassName('tab-button')[2];
   if (firstTab) {
@@ -117,6 +126,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+//DarkModeToggle_Message
+
+
 // Type "stars" to launch stars animation
 let typed = '';
 document.addEventListener('keydown', function(e) {
