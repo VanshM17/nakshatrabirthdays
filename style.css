@@ -5,7 +5,6 @@ body {
   .card, .button, .text, .fun-fact-text, .theme-switcher-container, .dropdown-btn {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
-
 ;
   margin: 0;
   padding: 0;
@@ -42,6 +41,19 @@ header {
   transition: color 0.5s;
 }
 
+#scrollProgressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 5px; /* Adjust height as needed */
+  background: linear-gradient(90deg,#d1e4f6,	#c4ddf6,	#b7d5f6,	#aacef6,	#9dc6f6,	#90bef5,	#83b7f5,	#76aff5,	#69a8f5,	#5c9ff4,	#4a90e2); /* Change color as desired */
+  z-index: 9999;
+  border-radius: 10px;
+  transition: width 0.2s ease;
+}
+
+
 .tabs {
   display: flex;
   justify-content: center;
@@ -67,6 +79,7 @@ header {
 }
 
 .fun-fact-slider {
+  background-clip: text;
   position: relative;
   background: linear-gradient(90deg,  #f8e7ca 10%, #f8eede 100%);
   border-radius: 12px;
@@ -114,7 +127,6 @@ header {
 
 
 .member {
-  transition: opacity 0.3s ease-in-out;
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
@@ -140,7 +152,6 @@ header {
   cursor:pointer;
   margin-right: 1.5rem;
   box-shadow: 0 2px 8px rgba(25, 23, 23, 0.243);
-  transition: transform 0.75s ease;
 }
 .member-photo:hover {
   transform: scale(1.15);
@@ -152,7 +163,10 @@ header {
   flex: 1;
 }
 .member-name{
+  
+  
   font-weight: 100;
+  transition: opacity 0.3s ease-in-out;
   font-size: 1.2rem;
   color: #1d2032;
   margin-bottom: 0.1  rem;
@@ -160,6 +174,7 @@ header {
 }
 
 .member-title{
+  transition: opacity 0.3s ease-in-out;
   font-weight: 90;
   font-size: 1.1rem;
   margin-bottom: 0.1rem;
@@ -264,7 +279,7 @@ body.dark-mode .member-title {
   color: #F8F0E3;
 }
 body.dark-mode .member-birthday {
-  color: #b3b3b3;
+  color: #fde99a;
 }
 body.dark-mode .sort-controls label,
 body.dark-mode .sort-controls select {
@@ -272,6 +287,19 @@ body.dark-mode .sort-controls select {
   background: #21243b;
   border-color: #444;
 }
+
+body.dark-mode #scrollProgressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 5px;
+  background: linear-gradient(90deg, #000dbe, #0015d3, #0028e6, #0043f6, #0066ff, #008dff, #00b4ff, #00d7ff, #00e9ff, #00fbff);
+  z-index: 9999;
+  border-radius: 3px;
+  transition: width 0.2s ease;
+}
+
 
 body.dark-mode .fun-fact-slider {
   position: relative;
