@@ -1,27 +1,47 @@
 body {
+  transition: opacity 0.9s ease-in-out;
   font-family: 'Coolvetica', serif;
   background:  linear-gradient(90deg,  #f8e7ca 20%, #f8f0e3 100%);
+  .card, .button, .text, .fun-fact-text, .theme-switcher-container, .dropdown-btn {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
 ;
   margin: 0;
   padding: 0;
   color: #333;
 }
 header {
+  transition: opacity 0.3s ease-in-out;
   font-family: 'Coolvetica', serif;
   letter-spacing: 1px;
   background: linear-gradient(90deg,#94c4ff 0%, #7eb5fa 25%, #5f97ff 75%, #3d94ff 100%);
   color: #1d1e24;
   padding: 1.75rem 1.5rem;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.002);
 }
 
 .logo {
-  height: 70px;
+  height: 120px;
   margin-bottom: 0.5rem;
-  border-radius: 10px;
-  box-shadow: 0 0px 0px rgba(0,0,0,0.3);
+  border-radius: 19px;
+  box-shadow:  rgba(0,0,0,0.3);
 }
+
+.about-link {
+  color: #000000;
+  text-decoration: rgb(255, 153, 0);
+  font-weight: bolder;
+  margin-left: -0.5rem;
+  transition: color 0.5s;
+}
+
+.about-link:hover {
+  color: #ffffff;
+  transition: color 0.5s;
+}
+
 .tabs {
   display: flex;
   justify-content: center;
@@ -36,7 +56,7 @@ header {
   cursor: pointer;
   font-size: 1.1rem;
   font-weight: 600;
-  transition: color 0.75s ease, border-bottom 0.75s ease;
+  transition: color 0.5s ease, border-bottom 0.5s ease;
   border-bottom: 3px solid transparent;
   letter-spacing: 0.05em;
 }
@@ -63,7 +83,7 @@ header {
 }
 
 .fun-fact-text {
-  animation: pulse 2s infinite ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   min-height: 3rem;
   display: flex;
   align-items: center;
@@ -77,10 +97,24 @@ header {
   background:  linear-gradient(90deg,  #f8e7ca 10%, #f8eede 100%);
   border-radius: 12px;
   box-shadow: 1 0px 0px rgba(0, 0, 0, 0);
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  height: 1;
+  overflow: hidden;
   padding: 0rem 2.5rem;
   font-size: 1rem;
 }
+
+@media (prefers-color-scheme: dark) {
+  .color-invertible {
+    filter: invert(1) brightness(2);
+    transition: filter 0.3s;
+  }
+}
+
+
 .member {
+  transition: opacity 0.3s ease-in-out;
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
@@ -189,9 +223,23 @@ body.dark-mode .blur-backdrop {
   backdrop-filter: blur(2px);
 }
 
+body.dark-mode .about-link {
+  color: #ffffff;
+  text-decoration: rgb(255, 153, 0);
+  font-weight: bolder;
+  margin-left: -0.5rem;
+  transition: color 0.5s;
+}
+
+body.dark-mode .about-link:hover {
+  color: #000000;
+  transition: color 0.5s;
+}
+
 body.dark-mode .tab-button {
   color: #eee;
   background: transparent;
+
 }
 body.dark-mode .tab-button.active,
 body.dark-mode .tab-button:hover {
@@ -214,7 +262,6 @@ body.dark-mode .member-name {
 }
 body.dark-mode .member-title {
   color: #F8F0E3;
-  background: linear-gradient(90deg,#1f2236 20%, #202538 100%);
 }
 body.dark-mode .member-birthday {
   color: #b3b3b3;
@@ -489,17 +536,8 @@ body.dark-mode .tooltip .tooltiptext {
   background: #ffe066;
   color: #232946;
 }
-.about-link {
-  color: #ffffff;
-  text-decoration: rgb(255, 153, 0);
-  font-weight: bolder;
-  margin-left: -0.5rem;
-  transition: color 0.5s;
-}
-.about-link:hover {
-  color: #000000;
-  transition: color 0.5s;
-}
+
+
 .back-link {
   background: transparent;
   border: none;
@@ -519,7 +557,6 @@ body.dark-mode .back-link {
 
 img {
   -webkit-user-drag: none;
-  user-drag: none;
   -webkit-touch-callout: none;
   user-select: none;
   -moz-user-select: none;
