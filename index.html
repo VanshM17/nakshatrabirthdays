@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="scrollProgressBar"></div>
  <header>
   <!--Nakshatra Logo-->
   <img src="logo.png" draggable="false"  alt="Nakshatra Society Logo" class="logo">
@@ -35,7 +36,8 @@
   </div>
   <div class="search-bar" id="searchBar">
   <button class="search-icon-btn" id="searchIconBtn" aria-label="Search">
-    <img src="images/icons/search.svg" alt="Search" />
+    <img src="images/icons/search.svg" class="color-invertible" alt="Search" />
+    
   </button>
   <input
     type="text"
@@ -236,14 +238,6 @@
       </div>
     </div>
     <div class="member">
-      <img src="placeholder.jpg" alt="Harshit" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Harshit Chauhan</div>
-        <div class="member-title execomm">Execomm Member</div>
-        <div class="member-birthday">11-Jun</div>
-      </div>
-    </div>
-    <div class="member">
       <img src="placeholder.jpg" alt="Srishti" class="member-photo">
       <div class="member-info">
         <div class="member-name">Srishti Tayal</div>
@@ -252,7 +246,7 @@
       </div>
     </div>
     <div class="member">
-      <img src="placeholder.jpg" alt="Ashu" class="member-photo">
+      <img src="images/ashu.png" alt="Ashu" class="member-photo">
       <div class="member-info">
         <div class="member-name">Ashu Anand</div>
         <div class="member-title execomm">Execomm Member</div>
@@ -585,7 +579,7 @@ const funFacts = [
   "Fun fact: In a room of 23 people, two people sharing the same birthday is 50%! (Ofcourse not learnt from a Nakshatra post XD)",
   "There are 5 days with two birthdays happening at once!",
   "November is the month with the most birthdays — with 6 members celebrating!",
-  "Your birthday not listed here? ping me!"
+  // Add more fun facts here
 ];
 
 const funFactText = document.querySelector('.fun-fact-text');
@@ -597,7 +591,7 @@ let currentIndex = 0;
 
 function typewriter() {
   if (!isTyping && !isErasing) {
-    //typing the next fact
+    // Start typing the next fact
     isTyping = true;
     currentText = funFacts[factIndex];
     currentIndex = 0;
@@ -610,7 +604,7 @@ function typewriter() {
       currentIndex++;
       setTimeout(type, Math.random() * 20 + 30);
     } else {
-      // Finished typing
+      // Finished typing, start erasing after a pause
       isTyping = false;
       setTimeout(() => {
         isErasing = true;
@@ -624,7 +618,7 @@ function typewriter() {
       currentIndex--;
       setTimeout(erase, 20);
     } else {
-      // Finished erasing
+      // Finished erasing, move to next fact
       isErasing = false;
       factIndex = (factIndex + 1) % funFacts.length;
       setTimeout(typewriter, 500);
