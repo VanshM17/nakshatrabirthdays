@@ -1,6 +1,4 @@
-/* ============================================
-   NAKSHATRA BIRTHDAYS — UPGRADED SCRIPT.JS
-   ============================================ */
+/*  NAKSHATRA BIRTHDAYS — UPGRADED SCRIPT.JS */
 
 // ─── DATA ───────────────────────────────────────────────────────────────────────
 
@@ -27,6 +25,8 @@ const allData = {
     { name: "Yogita Jha",        birthday: "5-Nov",  title: "Director - Technology",      photo: "placeholder.jpg" },
     { name: "Nandini Nautiyal",  birthday: "17-Nov", title: "General Secretary",          photo: "placeholder.jpg" },
     { name: "Vansh Maheshwari",  birthday: "17-Nov", title: "Vice President",             photo: "images/vansh.png" },
+    { name: "Dhruv Garg",        birthday: "11-Feb", title: "Managing Director",          photo: "placeholder.jpg" },
+    
   ],
   2028: [
     { name: "Mayank Gupta",      birthday: "7-Jan",  title: "Execomm",  photo: "placeholder.jpg" },
@@ -96,11 +96,12 @@ function getRoleClass(title) {
 function getRolePriority(title) {
   const t = title.toLowerCase();
   if (t.includes('president') && !t.includes('vice') && !t.includes('ex')) return 0;
-  if (t.includes('vice'))        return 1;
-  if (t.includes('director'))    return 2;
-  if (t.includes('secretary'))   return 3;
-  if (t.includes('execomm'))     return 4;
-  return 5;
+  if (t.includes('vice'))                 return 1;
+  if (t.includes('managing director'))    return 2;
+  if (t.includes('secretary'))            return 3;
+  if (t.includes('Director - '))          return 5;
+  if (t.includes('execomm'))              return 7;
+  else return 6; // regular members and others
 }
 
 function highlightMatch(text, query) {
@@ -196,11 +197,11 @@ function buildMemberCard(m, year, queryHighlight = '') {
 function getRoleShortLabel(title) {
   const t = title.toLowerCase();
   if (t.includes('ex-') || t.startsWith('ex-')) return 'Alumni';
-  if (t.includes('president') && !t.includes('vice')) return 'President';
-  if (t.includes('vice')) return 'Vice President';
-  if (t.includes('managing director')) return 'Managing Director';
+  if (t.includes('president') && !t.includes('vice')) return 'Prezi';
+  if (t.includes('vice')) return 'VP OP';
+  if (t.includes('managing')) return 'MD';
   if (t.includes('director')) return 'Director';
-  if (t.includes('secretary')) return 'General Secretary';
+  if (t.includes('secretary')) return 'Gensec';
   if (t.includes('execomm') || t.includes('senior execomm')) return 'Execomm';
   if (t.includes('head of')) return 'Head';
   return 'Member';
@@ -506,7 +507,6 @@ function attachBirthdayTooltips() {
 
 const funFacts = [
   "In a room of 23 people, there's a 50% chance two share the same birthday!",
-  "On 17-Nov, TWO members share a birthday — Nandini & Vansh!",
   "September has the most birthdays across all batches!",
   "For a 50% chance of 3 people sharing a birthday, you need 84 people!",
   "There are 5 days with two birthdays happening at once!",

@@ -1,8 +1,4 @@
-/* ============================================
-   NAKSHATRA BIRTHDAYS — UPGRADED CSS
-   Theme: Deep Space / Celestial Luxury
-   Fonts: Syne (display) + DM Sans (body)
-   ============================================ */
+/*NAKSHATRA BIRTHDAYS — UPGRADED CSS*/
 
 :root {
   --bg:           #f5f0e8;
@@ -13,7 +9,7 @@
   --text:         #1a1714;
   --text2:        #5a5248;
   --text3:        #8a8078;
-  --accent:       #e8670a;
+  --accent:       #ff0000;
   --accent2:      #c44f00;
   --blue:         #3f6fd4;
   --blue-light:   #dce8ff;
