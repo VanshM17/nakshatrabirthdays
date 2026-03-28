@@ -5,637 +5,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Birthdays | Nakshatra</title>
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+  <!-- Scroll Progress Bar -->
   <div id="scrollProgressBar"></div>
- <header>
-  <!--Nakshatra Logo-->
-  <img src="logo.png" draggable="false"  alt="Nakshatra Society Logo" class="logo">
-  <h1>🎂 Nakshatra Birthdays</h1>
-  <!-- About Page -->
-<nav>
-  <H3><a href="about.html" class="about-link">About Us</a></H3>
-</nav>
 
-  <H4>Celebrating our stars ✨</H4>
-  <div class="tooltip">
- <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
-  🌙
-</button>
-<span class = "tooltiptext" id="darkModeTooltip">Switch to dark mode</span>
-</div>
-</header>
-  <div class="tabs">
-    
-    <button class="tab-button" onclick="openYear(event, '2025')">2025</button>
-    <button class="tab-button" onclick="openYear(event, '2026')">2026</button>
-    <button class="tab-button" onclick="openYear(event, '2027')">2027</button>
-    <button class="tab-button" onclick="openYear(event, '2028')">2028</button>
-    <button class="tab-button" onclick="openYear(event, '2029')">2029</button>
-     <span class="year-glider"></span>
-  </div>
-  <div class="search-bar" id="searchBar">
-  <button class="search-icon-btn" id="searchIconBtn" aria-label="Search">
-    <img src="images/icons/search.svg" class="color-invertible" alt="Search" />
-    
-  </button>
-  <input
-    type="text"
-    id="memberSearch"
-    placeholder="Search members..."
-    oninput="searchMembers()"
-    autocomplete="off"
-  />
-</div>
+  <!-- Stars canvas background -->
+  <canvas id="starfield"></canvas>
 
-<div class="fun-fact-slider">
-  <div class="fun-fact-text"></div>
-</div>
-  <!-- 2025 -->
-  <div id="2025" class="tab-content">
-    <div class="member">
-      <img src="placeholder.jpg" alt="Ayush Jha" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Ayush Jha</div>
-        <div class="member-title">Ex-President</div>
-        <div class="member-birthday">29-Jul</div>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <img src="logo.png" draggable="false" alt="Nakshatra Society Logo" class="logo" onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex'">
+        <div id="logo-fallback" class="logo-fallback" style="display:none">🔭</div>
+      </div>
+      <div class="header-center">
+        <h1 class="site-title">Nakshatra<span class="title-accent"> Birthdays</span></h1>
+        <p class="site-subtitle">Celebrating every star in our constellation ✨</p>
+      </div>
+      <div class="header-right">
+        <a href="about.html" class="about-link">About Us</a>
+        <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
       </div>
     </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Kritika Choudhary" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Kritika Choudhary</div>
-        <div class="member-title">Ex-President</div>
-        <div class="member-birthday">26-Oct</div>
-      </div>
+  </header>
+
+  <!-- CONTROL BAR -->
+  <div class="control-bar">
+    <!-- Year Tabs -->
+    <div class="tabs" id="yearTabs">
+      <button class="tab-button active" data-year="2026" onclick="openYear(event,'2026')">2026</button>
+      <button class="tab-button" data-year="2027" onclick="openYear(event,'2027')">2027</button>
+      <button class="tab-button" data-year="2028" onclick="openYear(event,'2028')">2028</button>
+      <button class="tab-button" data-year="2029" onclick="openYear(event,'2029')">2029</button>
+      <span class="tab-underline" id="tabUnderline"></span>
     </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Vatsal Shrivast" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Vatsal Shrivastava</div>
-        <div class="member-title">Ex-Head of Design</div>
-        <div class="member-birthday">26-Nov</div>
+
+    <!-- Controls -->
+    <div class="controls-right">
+      <!-- Search -->
+      <div class="search-wrap" id="searchWrap">
+        <button class="icon-btn" id="searchToggle" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <input type="text" id="memberSearch" placeholder="Search members…" oninput="handleSearch()" autocomplete="off" />
+        <button class="clear-search" id="clearSearch" aria-label="Clear search">×</button>
       </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Paridhi Gupta" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Paridhi Gupta</div>
-        <div class="member-title">Ex-Vice-President</div>
-        <div class="member-birthday">7-Aug</div>
+
+      <!-- Sort -->
+      <div class="sort-wrap">
+        <button class="icon-btn sort-btn" id="sortToggle" aria-label="Sort">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="9" y2="18"/></svg>
+        </button>
+        <div class="sort-dropdown" id="sortDropdown">
+          <div class="sort-label">Sort by</div>
+          <button class="sort-option active" data-sort="birthday" onclick="setSortMode('birthday')">📅 Birthday (Month)</button>
+          <button class="sort-option" data-sort="name" onclick="setSortMode('name')">🔤 Name (A–Z)</button>
+          <button class="sort-option" data-sort="role" onclick="setSortMode('role')">👑 Role</button>
+        </div>
       </div>
+
+      <!-- Chart Toggle -->
+      <button class="icon-btn chart-btn" id="chartToggle" aria-label="Birthday chart" title="View birthday chart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="3" width="4" height="18"/><rect x="10" y="8" width="4" height="13"/><rect x="2" y="13" width="4" height="8"/></svg>
+      </button>
     </div>
   </div>
 
-  <!-- 2026 -->
-  <div id="2026" class="tab-content">
-    <div class="member">
-      <img src="placeholder.jpg" alt="Ghanshyam Jonwal" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Ghanshyam Jonwal</div>
-        <div class="member-title">Ex-Vice-President</div>
-        <div class="member-birthday">17-Feb</div>
+  <!-- SEARCH RESULTS BANNER -->
+  <div id="searchBanner" class="search-banner" style="display:none">
+    <span id="searchBannerText"></span>
+    <button onclick="clearSearch()">✕ Clear</button>
+  </div>
+
+  <!-- FUN FACT TICKER -->
+  <div class="fun-fact-bar">
+    <span class="fun-fact-label">✦ Did you know?</span>
+    <div class="fun-fact-text" id="funFactText"></div>
+  </div>
+
+  <!-- CHART PANEL -->
+  <div class="chart-panel" id="chartPanel">
+    <div class="chart-panel-inner">
+      <div class="chart-header">
+        <h2>Birthday Distribution</h2>
+        <div class="chart-view-toggle">
+          <button class="cv-btn active" data-view="month" onclick="setChartView('month')">By Month</button>
+          <button class="cv-btn" data-view="year" onclick="setChartView('year')">By Batch</button>
+          <button class="cv-btn" data-view="role" onclick="setChartView('role')">By Role</button>
+        </div>
+        <button class="close-chart" onclick="toggleChart()" aria-label="Close chart">✕</button>
       </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Meenakshi Sinha" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Meenakshi Sinha</div>
-        <div class="member-title">Ex-Head of Astronomy</div>
-        <div class="member-birthday">23-Feb</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Ayush Dewangan" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Ayush Dewangan</div>
-        <div class="member-title">Ex-Managing Director</div>
-        <div class="member-birthday">27-Jun</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Omkar Ahuja" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Omkar Ahuja</div>
-        <div class="member-title">Ex-President</div>
-        <div class="member-birthday">15-Aug</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Ayushman Bari" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Ayushman Bari</div>
-        <div class="member-title">Ex-General Secretary</div>
-        <div class="member-birthday">15-Aug</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Divye Bajaj" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Divye Bajaj</div>
-        <div class="member-title">Ex-Vice-President</div>
-        <div class="member-birthday">31-Aug</div>
-      </div>
-    </div>
-     <div class="member">
-      <img src="placeholder.jpg" alt="Divye Bajaj" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Nikhil Kumar</div>
-        <div class="member-title">Ex-Director of Operations</div>
-        <div class="member-birthday">27-Oct</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Avantika Ambra" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Avantika Ambra</div>
-        <div class="member-title">Ex-General Secretary</div>
-        <div class="member-birthday">13-Dec</div>
+      <div class="chart-stats" id="chartStats"></div>
+      <div class="chart-container">
+        <canvas id="birthdayChart"></canvas>
       </div>
     </div>
   </div>
 
-  <!-- 2027 -->
-  <div id="2027" class="tab-content">
-    <div class="member">
-      <img src="placeholder.jpg" alt="Gautam" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Gautam Bajaj</div>
-        <div class="member-title execomm">Senior Execomm</div>
-        <div class="member-birthday">7-Jan</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Satyam" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Satyam Parida</div>
-        <div class="member-title execomm">General Secretary</div>
-        <div class="member-birthday">17-Jan</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Aakash" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Aakash Jha</div>
-        <div class="member-title execomm">General Secretary</div>
-        <div class="member-birthday">25-Mar</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Rahul" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Rahul</div>
-        <div class="member-title execomm">Managing Director</div>
-        <div class="member-birthday">15-Apr</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="images/ashu.png" alt="Ashu" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Ashu Anand</div>
-        <div class="member-title execomm">President</div>
-        <div class="member-birthday">8-Aug</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="images/tarun.jpg" alt="Tarun" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Tarun Sharma</div>
-        <div class="member-title execomm">Director - Public Relations</div>
-        <div class="member-birthday">7-Sep</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Harsh Swami" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Harsh Swami</div>
-        <div class="member-title execomm">Vice President</div>
-        <div class="member-birthday">11-Sep</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Dipankar" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Dipankar Page</div>
-        <div class="member-title execomm">Director - Astronomy</div>
-        <div class="member-birthday">21-Oct</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Yogita" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Yogita Jha</div>
-        <div class="member-title execomm">Director - Technology</div>
-        <div class="member-birthday">5-Nov</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Nandini" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Nandini Nautiyal</div>
-        <div class="member-title execomm">General Secretary</div>
-        <div class="member-birthday">17-Nov</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="images/vansh.png" alt="Vansh" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Vansh Maheshwari</div>
-        <div class="member-title execomm">Vice President</div>
-        <div class="member-birthday">17-Nov</div>
-      </div>
-    </div>
+  <!-- SEARCH RESULTS VIEW (global across all tabs) -->
+  <div id="searchResultsView" class="tab-content" style="display:none">
+    <div class="members-list" id="searchResultsList"></div>
   </div>
 
-  <!-- 2028 -->
-  <div id="2028" class="tab-content">
-    <div class="member">
-      <img src="placeholder.jpg" alt="Mayank" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Mayank Gupta</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">7-Jan</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Prajal" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Prajal Goel</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">9-Mar</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Tijil" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Tijil Gupta</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">9-Mar</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Rachit" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Rachit Kathuria</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">14-Apr</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Sneha" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Sneha Kumari</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">16-Apr</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Shreem" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Shreem</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">29-Apr</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Aujasvi" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Aujasvi Saxena</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">2-May</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Vini" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Vini Bansode</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">31-May</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Stuti" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Kartavya</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">7-Jun</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Bhavya" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Bhavya Goel</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">11-Jul</div>
-      </div>
-    </div>
-      <div class="member">
-      <img src="placeholder.jpg" alt="Bhavya" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Aditya Kumar</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">12-Jul</div>
-      </div>
-    </div>
-      <div class="member">
-      <img src="placeholder.jpg" alt="Prajal" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Raghav Bansal</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">12-Sep</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Stuti" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Stuti Jain</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">26-Sep</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Laksh" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Laksh Agrawal</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">8-Oct</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Ayush" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Ayush Sinha</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">20-Nov</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Aaryan" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Aaryan Kumar</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">30-Nov</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Akshat" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Akshat Kashyap</div>
-        <div class="member-title">Execomm</div>
-        <div class="member-birthday">13-Dec</div>
-      </div>
-    </div>
-  </div>
+  <!-- TAB CONTENTS -->
+  <div id="2026" class="tab-content"></div>
+  <div id="2027" class="tab-content"></div>
+  <div id="2028" class="tab-content"></div>
+  <div id="2029" class="tab-content"></div>
 
-  <!-- 2029 -->
-   <div id="2029" class="tab-content">
-    <div class="member">
-      <img src="placeholder.jpg" alt="Apoorv Tyagi" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Apoorv Tyagi</div>
-        <div class="member-title">Member</div>
-        <div class="member-birthday">19-Sep</div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">Made with 💫 by <strong>Vansh Maheshwari</strong></div>
+      <div class="footer-links">
+        <a href="/cdn-cgi/l/email-protection#0472656a776c2a69656c61776c7365766d2a71633637446a7771702a65672a6d6a" title="Mail" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        </a>
+        <a href="https://github.com/VanshM17" title="GitHub" target="_blank" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85.004 1.71.115 2.51.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/vansh-maheshwari" title="LinkedIn" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://instagram.com/_vanshmaheshwari_" title="Instagram" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
       </div>
+      <div class="footer-copy">© 2025 Nakshatra Astronomy Society</div>
     </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Ayush Rai" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Ayush Rai</div>
-        <div class="member-title">Member</div>
-        <div class="member-birthday">19-Sep</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Harshita Kannoujia" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Harshita Kannoujia</div>
-        <div class="member-title">Member</div>
-        <div class="member-birthday">19-Sep</div>
-      </div>
-    </div>
-    <div class="member">
-      <img src="placeholder.jpg" alt="Ishit Ninawat" class="member-photo">
-      <div class="member-info">
-        <div class="member-name">Ishit Ninawat</div>
-        <div class="member-title">Member</div>
-        <div class="member-birthday">16-Nov</div>
-      </div>
-    </div>
-  </div>
+  </footer>
 
+  <!-- Birthday tooltip -->
+  <div id="birthday-tooltip" class="bday-tooltip"></div>
+
+  <!-- Audio -->
+  <audio id="explosionSound" src="sounds/explosion.mp3" preload="auto"></audio>
 
   <script src="script.js"></script>
-  <footer class="site-footer">
-  <div class="footer-content">
-    <div>
-      <strong>Made with 💫 by Vansh Maheshwari</strong>
-    </div>
-    <div class="footer-links">
-      <a href="mailto:vansh.maheshwari.ug23@nsut.ac.in" title="Mail"><img src="images/icons/mail.svg" alt="Email"></a>
-      <a href="https://github.com/VanshM17" title="GitHub" target="_blank"><img src="images/icons/github.svg" alt="GitHub"></a>
-      <a href="https://linkedin.com/in/vansh-maheshwari" title="LinkedIn" target="_blank"><img src="images/icons/linkedin.svg" alt="LinkedIn"></a>
-      <a href="https://instagram.com/_vanshmaheshwari_" title="Instagram" target="_blank"><img src="images/icons/instagram.svg" alt="Instagram"></a>
-      <a href="https://wa.me/919958716677?text= Hi Vansh!" title="WhatsApp" target="_blank"><img src="images/icons/whatsapp.svg" alt="WhatsApp"></a>
-    </div>
-  </div>
-</footer>
-<audio id="explosionSound" src="sounds/explosion.mp3" preload="auto"></audio>
-<!-- Popup for enlarged image -->
-<div id="image-popup" style="display:none;">
-  <img src="" alt="Enlarged" />
-</div>
-  <!-- Tooltip element -->
-  <div id="birthday-tooltip" style="display:none; position:absolute; background:#222; color:#fff; padding:6px 12px; border-radius:4px; font-size:14px; z-index:1000; pointer-events:none;"></div>
-
-  <script>
-    // Utility function to calculate days left until next birthday
-    function daysUntilBirthday(birthdayStr) {
-      const [day, monthStr] = birthdayStr.split('-');
-      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      const month = monthNames.indexOf(monthStr);
-      const today = new Date();
-      let year = today.getFullYear();
-      let birthday = new Date(year, month, parseInt(day));
-
-      // If birthday has already passed this year, use next year
-      if (
-        today.getMonth() > month ||
-        (today.getMonth() === month && today.getDate() > parseInt(day))
-      ) {
-        birthday = new Date(year + 1, month, parseInt(day));
-      }
-
-      // Calculate difference in days
-      const diffTime = birthday - today;
-      return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    }
-
-    // Attach tooltip events after DOM is loaded
-    function attachBirthdayTooltips() {
-      const tooltip = document.getElementById('birthday-tooltip');
-      document.querySelectorAll('.member-birthday').forEach(birthdayEl => {
-        // Mouse enter: show tooltip
-        birthdayEl.addEventListener('mouseenter', function(e) {
-          const daysLeft = daysUntilBirthday(birthdayEl.textContent.trim());
-          tooltip.textContent = `${daysLeft} days left`;
-          tooltip.style.display = 'block';
-          tooltip.style.left = (e.pageX + 0) + 'px';
-          tooltip.style.top = (e.pageY + 0) + 'px';
-        });
-        // Mouse move: move tooltip with cursor
-        birthdayEl.addEventListener('mousemove', function(e) {
-          tooltip.style.left = (e.pageX + 20) + 'px';
-          tooltip.style.top = (e.pageY - 5) + 'px';
-        });
-        // Mouse leave: hide tooltip
-        birthdayEl.addEventListener('mouseleave', function() {
-          tooltip.style.display = 'none';
-        });
-      });
-    }
-
-    // Call the function when the page loads
-    document.addEventListener('DOMContentLoaded', attachBirthdayTooltips);
-  </script>
-
- <style>
-    /* Optional: Make birthdays stand out */
-    .member-birthday {
-      color: #626262;
-      cursor: pointer;
-      display: flex;
-      margin: 0 5px;
-    }
-    /* Optional: Style for the member card */
-    .member-card {
-      background: #f9f9f9;
-      border-radius: 8px;
-      padding: 1px;
-      margin: 10px 0;
-      width: 300px;
-    }
-
-  #birthday-tooltip {
-  font-family: sans-serif;
-  background-color: transparent;
-  position: absolute;
-  z-index: 1000;
-  background: transparent;
-  color: #fff;
-  font-family: 'Arial', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 0px 18px;
-  border-radius: 64px;
-  box-shadow: 0 2px 16px #f8f0e3;
-  opacity: 0.8;
-  pointer-events: visiblePainted;
-  text-align: center;
-  letter-spacing: .5px;
-  transition: opacity 0.25s;
-}
-  </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Disable right-click on all images
-  document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
-  });
-});
-
-const funFacts = [
-  "On 19th September, we have a triple header as there are 3 birthdays!",
-  "Fun fact: In a room of 23 people, two people sharing the same birthday is 50%!",
-  "To get a 50% probability of 3 people sharing the same birthday, you need to have 84 people in a room!",
-  "There are 5 days with two birthdays happening at once!",
-  "September is the month with the most birthdays — with 7 members celebrating!",
-];
-
-const funFactText = document.querySelector('.fun-fact-text');
-let factIndex = 0;
-let isTyping = false;
-let isErasing = false;
-let currentText = '';
-let currentIndex = 0;
-
-function typewriter() {
-  if (!isTyping && !isErasing) {
-    // Start typing the next fact
-    isTyping = true;
-    currentText = funFacts[factIndex];
-    currentIndex = 0;
-    funFactText.textContent = '';
-    setTimeout(type, 100);
-  } else if (isTyping) {
-    // Continue typing
-    if (currentIndex < currentText.length) {
-      funFactText.textContent += currentText[currentIndex];
-      currentIndex++;
-      setTimeout(type, Math.random() * 20 + 30);
-    } else {
-      // Finished typing, start erasing after a pause
-      isTyping = false;
-      setTimeout(() => {
-        isErasing = true;
-        setTimeout(erase, 100);
-      }, 2000);
-    }
-  } else if (isErasing) {
-    // Continue erasing
-    if (currentIndex > 0) {
-      funFactText.textContent = currentText.substring(0, currentIndex - 1);
-      currentIndex--;
-      setTimeout(erase, 20);
-    } else {
-      // Finished erasing, move to next fact
-      isErasing = false;
-      factIndex = (factIndex + 1) % funFacts.length;
-      setTimeout(typewriter, 500);
-    }
-  }
-}
-
-function type() {
-  if (currentIndex < currentText.length) {
-    funFactText.textContent += currentText[currentIndex];
-    currentIndex++;
-    setTimeout(type, Math.random() * 10 + 30);
-  } else {
-    isTyping = false;
-    setTimeout(() => {
-      isErasing = true;
-      erase();
-    }, 2000);
-  }
-}
-
-function erase() {
-  if (currentIndex > 0) {
-    funFactText.textContent = currentText.substring(0, currentIndex - 1);
-    currentIndex--;
-    setTimeout(erase, 10);
-  } else {
-    isErasing = false;
-    factIndex = (factIndex + 1) % funFacts.length;
-    setTimeout(typewriter, 500);
-  }
-}
-
-// Start the slider
-typewriter();
-
-</script>
-
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
 </html>
-</body>
-</html>
-
-
-
-
-
