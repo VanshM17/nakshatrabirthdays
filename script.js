@@ -40,7 +40,6 @@ const allData = {
     { name: "Kartavya Vashishth",birthday: "7-Jun",  title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Bhavya Goel",       birthday: "11-Jul", title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Stuti Jain",        birthday: "26-Sep", title: "Execomm",  photo: "placeholder.jpg" },
-    { name: "Laksh Agrawal",     birthday: "8-Oct",  title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Ayush Sinha",       birthday: "20-Nov", title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Aaryan Kumar",      birthday: "30-Nov", title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Akshat Kashyap",    birthday: "13-Dec", title: "Execomm",  photo: "placeholder.jpg" },
