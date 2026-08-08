@@ -1,5 +1,3 @@
-/*  NAKSHATRA BIRTHDAYS — UPGRADED SCRIPT.JS */
-
 // ─── DATA ───────────────────────────────────────────────────────────────────────
 
 const allData = {
@@ -18,25 +16,23 @@ const allData = {
     { name: "Satyam Parida",     birthday: "17-Jan", title: "General Secretary",          photo: "placeholder.jpg" },
     { name: "Aakash Jha",        birthday: "25-Mar", title: "General Secretary",          photo: "placeholder.jpg" },
     { name: "Rahul",             birthday: "15-Apr", title: "Managing Director",          photo: "placeholder.jpg" },
+    { name: "Harsh Jha",         birthday: "7-Aug",  title: "Director - Creativity",      photo: "placeholder.jpg" },
     { name: "Ashu Anand",        birthday: "8-Aug",  title: "President",                  photo: "images/ashu.png" },
-    { name: "Tarun Sharma",      birthday: "7-Sep",  title: "Director - Public Relations",photo: "images/tarun.jpg" },
+    { name: "Tarun Sharma",      birthday: "7-Sep",  title: "Director - Public Relations",photo: "images/tarun.jpg"},
     { name: "Harsh Swami",       birthday: "11-Sep", title: "Vice President",             photo: "placeholder.jpg" },
     { name: "Dipankar Page",     birthday: "21-Oct", title: "Director - Astronomy",       photo: "placeholder.jpg" },
     { name: "Yogita Jha",        birthday: "5-Nov",  title: "Director - Technology",      photo: "placeholder.jpg" },
     { name: "Nandini Nautiyal",  birthday: "17-Nov", title: "General Secretary",          photo: "placeholder.jpg" },
-    { name: "Vansh Maheshwari",  birthday: "17-Nov", title: "Vice President",             photo: "images/vansh.png" },
+    { name: "Vansh Maheshwari",  birthday: "17-Nov", title: "Vice President",             photo: "images/vansh.png"},
     { name: "Dhruv Garg",        birthday: "11-Feb", title: "Managing Director",          photo: "placeholder.jpg" },
     
   ],
   2028: [
     { name: "Mayank Gupta",      birthday: "7-Jan",  title: "Execomm",  photo: "placeholder.jpg" },
-    { name: "Prajal Goel",       birthday: "9-Mar",  title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Tijil Gupta",       birthday: "9-Mar",  title: "Execomm",  photo: "placeholder.jpg" },
-    { name: "Rachit Kathuria",   birthday: "14-Apr", title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Sneha Kumari",      birthday: "16-Apr", title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Shreem",            birthday: "29-Apr", title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Aujasvi Saxena",    birthday: "2-May",  title: "Execomm",  photo: "placeholder.jpg" },
-    { name: "Vini Bansode",      birthday: "31-May", title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Kartavya Vashishth",birthday: "7-Jun",  title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Bhavya Goel",       birthday: "11-Jul", title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Stuti Jain",        birthday: "26-Sep", title: "Execomm",  photo: "placeholder.jpg" },
