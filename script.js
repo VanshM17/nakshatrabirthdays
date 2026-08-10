@@ -35,6 +35,7 @@ const allData = {
     { name: "Aujasvi Saxena",    birthday: "2-May",  title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Kartavya Vashishth",birthday: "7-Jun",  title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Bhavya Goel",       birthday: "11-Jul", title: "Execomm",  photo: "placeholder.jpg" },
+    { name: "Himanshu Chourasia",birthday: "9-Aug",  title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Stuti Jain",        birthday: "26-Sep", title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Ayush Sinha",       birthday: "20-Nov", title: "Execomm",  photo: "placeholder.jpg" },
     { name: "Aaryan Kumar",      birthday: "30-Nov", title: "Execomm",  photo: "placeholder.jpg" },
