@@ -16,6 +16,7 @@ const allData = {
     { name: "Satyam Parida",     birthday: "17-Jan", title: "Ex-General Secretary",          photo: "placeholder.jpg" },
     { name: "Aakash Jha",        birthday: "25-Mar", title: "Ex-General Secretary",          photo: "placeholder.jpg" },
     { name: "Rahul",             birthday: "15-Apr", title: "Ex-Managing Director",          photo: "placeholder.jpg" },
+    { name: "Deepanshu Sain",    birthday: "4-Aug",  title: "Ex-Director - Mathematics",     photo: "placeholder.jpg" },
     { name: "Harsh Jha",         birthday: "7-Aug",  title: "Ex-Director - Creativity",      photo: "placeholder.jpg" },
     { name: "Ashu Anand",        birthday: "8-Aug",  title: "Ex-President",                  photo: "images/ashu.png" },
     { name: "Tarun Sharma",      birthday: "7-Sep",  title: "Ex-Director - Public Relations",photo: "images/tarun.jpg"},
@@ -35,14 +36,20 @@ const allData = {
     { name: "Aujasvi Saxena",    birthday: "2-May",  title: "Vice-President",                    photo: "placeholder.jpg" },
     { name: "Bhavya Goel",       birthday: "11-Jul", title: "Director - Operations",             photo: "placeholder.jpg" },
     { name: "Himanshu Chourasia",birthday: "9-Aug",  title: "Managing Director",                 photo: "placeholder.jpg" },
+    { name: "Piyush Tiwari",     birthday: "30-Aug", title: "Director - Operations",             photo: "placeholder.jpg" },
     { name: "Stuti Jain",        birthday: "26-Sep", title: "Director - Creativity",             photo: "placeholder.jpg" },
     { name: "Ayush Sinha",       birthday: "20-Nov", title: "General Secretary",                 photo: "placeholder.jpg" },
     { name: "Aaryan Kumar",      birthday: "30-Nov", title: "Vice-President",                    photo: "placeholder.jpg" },
     { name: "Akshat Kashyap",    birthday: "13-Dec", title: "Senior Execomm",                    photo: "placeholder.jpg" },
   ],
   2029: [
+
+    { name: "Kushank Soni",      birthday: "13-Aug", title: "Execomm",   photo: "placeholder.jpg" },
+    { name: "Priyanshi Gautam",  birthday: "25-Aug", title: "Execomm",   photo: "placeholder.jpg" },
+    { name: "Aaradhya Negi"     ,birthday: "31-Aug", title: "Execomm",   photo: "placeholder.jpg" },
+    { name: "Suyash Srivastava", birthday: "11-Sep", title: "Execomm",   photo: "placeholder.jpg" },
     { name: "Harshita Kannoujia",birthday: "19-Sep", title: "Execomm",   photo: "placeholder.jpg" },
-    { name: "Ishit Ninawat",     birthday: "16-Nov", title: "Execomm",   photo: "placeholder.jpg" },
+    { name: "Ishit Ninawat"     ,birthday: "16-Nov", title: "Execomm",   photo: "placeholder.jpg" },
   ],
 };
 
