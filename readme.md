@@ -1,4 +1,4 @@
-# 🌌 Nakshatra Birthdays
+#  Nakshatra Birthdays
 
 > An interactive, astronomy-themed birthday tracker for the members of **Nakshatra - The Astronomy and Mathematics Society**.
 
@@ -8,7 +8,7 @@
 
 ---
 
-## ✨ Features
+##  Features
 
 - **🔍 Live Search** - Instantly search members by name, role, or birthday across all batches simultaneously, with highlighted query matches in results
 - **📅 Sort Controls** - Sort members by Birthday (month-grouped), Name (A–Z), or Role hierarchy (President → VP → MD → Secretary → Director → Execomm → Member)
@@ -43,7 +43,7 @@ nakshatra-birthdays/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 No build tools or dependencies required. Just open `index.html` in any modern browser.
 
@@ -63,7 +63,7 @@ open index.html
 
 ---
 
-## 🧩 Tech Stack
+##  Tech Stack
 
 | Layer      | Technology                                      |
 |------------|-------------------------------------------------|
@@ -75,7 +75,7 @@ open index.html
 
 ---
 
-## 👥 Adding Members
+##  Adding Members
 
 All member data lives in `script.js` in the `allData` object, grouped by graduation batch year:
 
@@ -95,7 +95,7 @@ const allData = {
 
 ---
 
-## ⌨️ Easter Eggs
+##  Easter Eggs
 
 | Type this anywhere on the page | Effect                                      |
 |-------------------------------|---------------------------------------------|
@@ -104,7 +104,7 @@ const allData = {
 
 ---
 
-## 🔮 Future Improvements
+##  Future Improvements
 
 ### 🧠 Data & Content
 - [ ] **Admin panel / CMS** - A password-protected interface to add/edit/remove members without touching code
@@ -112,29 +112,29 @@ const allData = {
 - [ ] **Member profiles** - Clicking a member card opens a modal/page with extended info (socials, tenure, fun facts)
 - [ ] **Milestone badges** - Auto-detect when someone shares a birthday with another member, or is celebrating a "round" birthday (20, 25, etc.)
 
-### 🎨 Design & UX
+###  Design & UX
 - [ ] **Confetti animation** - Auto-trigger on page load if today is someone's birthday
 - [ ] **View toggle** - Switch between the current list view and a calendar/grid view showing birthdays on a monthly calendar
 - [ ] **Photo upload** - Let members upload their own profile photo via a simple form (Firebase Storage or similar)
 - [ ] **Smooth page transitions** - Add View Transitions API for tab switches and search transitions
 
-### 🛠 Technical
+###  Technical
 - [ ] **Backend integration** - Move data from the JS array to a lightweight backend (Firebase, Supabase, or Google Sheets API) so non-developers can manage it
 - [ ] **PWA support** - Add a service worker and web manifest so the site works offline and can be installed on mobile
 - [ ] **Export feature** - Download the birthday list as a PDF or `.ics` calendar file to import into Google Calendar / Apple Calendar
 - [ ] **URL-based state** - Reflect the active tab and search query in the URL so links can deep-link to a specific batch or search
 - [ ] **Unit tests** - Add tests for core functions like `daysUntilBirthday`, `sortMembers`, and `parseBirthday`
 
-### ♿ Accessibility
+###  Accessibility
 - [ ] **Keyboard navigation** - Full tab/arrow-key support for tabs, sort dropdown, and chart controls
 - [ ] **Screen reader support** - ARIA labels and live regions for dynamic content (search results, fun fact updates)
 - [ ] **Reduced motion** - Respect `prefers-reduced-motion` to disable typewriter, starfield, and card animations
 
 ---
 
-## 🧑‍💻 Author
+##  Author
 
-**Vansh Maheshwari** - Vice President, Nakshatra - The Astronomy and Mathematics Society of NSUT
+**Vansh Maheshwari** - Former Vice-President, Nakshatra - The Astronomy and Mathematics Society of NSUT
 
 [![GitHub](https://img.shields.io/badge/GitHub-VanshM17-181717?style=flat-square&logo=github)](https://github.com/VanshM17)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-vansh--maheshwari-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/vansh-maheshwari)
@@ -142,6 +142,6 @@ const allData = {
 
 ---
 
-## 📄 License
+##  License
 
-This project is for internal use by the Nakshatra Astronomy and Mathematics Society.
+This project is for internal use only by  **Nakshatra - The Astronomy and Mathematics Society of NSUT**.
